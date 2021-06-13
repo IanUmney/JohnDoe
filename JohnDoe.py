@@ -14,6 +14,8 @@ class JohnDoe():
         self.age = kwargs.get("age", self.age())
         self.birthday = kwargs.get("birthday", self.birthday())
         self.driving_license = kwargs.get("driving_license", self.driving_license())
+        self.email = kwargs.get("email", self.email())
+
 
     def create(self):
         return {
@@ -24,16 +26,18 @@ class JohnDoe():
                 "bank_card": self.bank_card,
                 "age": self.age,
                 "birthday": self.birthday,
-                "driving_license": self.driving_license
+                "driving_license": self.driving_license,
+                "email": self.email
                 }
 
     def mobile_number(self):
         '''Get a random phone number in UK format: 07 + 123456789'''
-        
+
         mobile_number = "07"
 
         for _ in range(9):
             mobile_number += str(random.randint(0, 9))
+            
         return mobile_number
 
     def ni_number(self):
@@ -123,6 +127,7 @@ class JohnDoe():
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
+        # Always print double digit birthdays
         if day < 10:
             day = "0" + str(day)
         if month < 10:
@@ -173,3 +178,19 @@ class JohnDoe():
         i = f"{random.randint(1,9)}0"
 
         return "{}{}{}{}{}{}{}{} {}".format(a, b, c, d, e, f, g, h, i)
+
+    def email(self):
+        '''Random email based on name of John Doe'''
+
+        # Email providers with UK TLD 
+        providers = ["yahoo.co.uk", "gmail.co.uk", "live.co.uk", \
+                    "hotmail.co.uk", "icloud.co.uk", "msn.co.uk"
+                    ]
+
+        provider = random.choice(providers)
+
+        email = ".".join(self.name.split(" ")) + "@" + provider
+
+        return email
+
+
