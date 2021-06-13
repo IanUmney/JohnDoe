@@ -106,15 +106,3 @@ class JohnDoe():
     def age(self):
         '''Random age'''
         return str(random.randint(18, 65))
-
-
-# jd = JohnDoe(name="Ian Umney")
-# dict = {
-#     "name": jd.name,
-#     "address": jd.address,
-#     "phone_number": jd.mobile_number,
-#     "ni_number": jd.ni_number,
-#     "bank_card": jd.bank_card,
-#     "age": jd.age
-# }
-# print(dict)
