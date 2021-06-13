@@ -26,11 +26,15 @@ This data could be used to populate test environments with arbitrary user inform
         + Random but genuine - Meaning the specific postcode is in the listed area
 + **National Insurance Number**
     + UK format of _AB12345678C_
-+ **Bank card details**
++ **Bank Card Details**
     + Bank card numbers
         + Genuine first 6-digit account IDs and then 10 random numbers
     + Bank expiry dates and CVVs
         + Randomly generated integers
++ **Driving License**
+    + UK formatted number with John Doe's information
++ **Email**
+    + forename.surname@ random email provider with UK TLD
 
 ## Setup
 1. Clone the repo into the desired location
