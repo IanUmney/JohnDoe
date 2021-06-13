@@ -29,6 +29,7 @@ class JohnDoe():
 
     def mobile_number(self):
         '''Get a random phone number in UK format: 07 + 123456789'''
+        
         mobile_number = "07"
 
         for _ in range(9):
@@ -38,7 +39,9 @@ class JohnDoe():
     def ni_number(self):
         '''Gets string with the format of a national insurance
         number: AB123456C'''
-        def rac():  # random ascii char
+
+        # random ascii char
+        def rac():  
             return random.choice(string.ascii_uppercase)
 
         return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
@@ -110,13 +113,16 @@ class JohnDoe():
 
     def age(self):
         '''Random age'''
+
         return str(random.randint(18, 65))
 
     def birthday(self):
         '''Random birthday'''
+
         year = datetime.datetime.now().year - int(self.age)
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
+
         if day < 10:
             day = "0" + str(day)
         if month < 10:
