@@ -54,16 +54,27 @@ jd = JohnDoe().create()
 This will return a dictionary with all the data for the fictional person. 
 ```python
 {
-    'mobile_number': '07649249204', 
-    'ni_number': 'TH994744X', 
-    'address': '418 Alexander Road, Lewisham, SE6 4AE', 
-    'name': 'Benjamin Nutter', 
-    'bank_card': '5573575350915154 - Mastercard Expiry:2/26 CVV:540', 
-    'age': '40', 
-    'birthday': '15/02/1981', 
-    'driving_license': 'Nutte80215199SQ 20', 
-    'email': 'Benjamin.Nutter@hotmail.co.uk'
+    'mobile_number': '07945301576', 
+    'ni_number': 'OB955001O', 
+    'address': {
+                'house_number': 401, 
+                'street': 'Manchester Road', 
+                'area': 'Richmond upon Thames', 
+                'postcode': 'TW11 8YZ'
+                }, 
+    'name': 'Zachary Ramsey', 
+    'bank_card': {
+                'card_number': '5573573699040899', 
+                'provider': 'Mastercard', 
+                'expiry_date': '8/31', 
+                'cvv': '803'
+                }, 
+    'age': '21', 
+    'birthday': '27/06/2000', 
+    'driving_license': 'Ramse00627099IP 60', 
+    'email': 'Zachary.Ramsey@hotmail.co.uk'
 }
+
 ```
 
 You can pass `**kwargs` to the JohnDoe class to specify particular variables.
@@ -74,14 +85,25 @@ print(jd)
 
 ```python
 {
-    'mobile_number': '07649249204', 
-    'ni_number': 'TH994744X', 
-    'address': '418 Alexander Road, Lewisham, SE6 4AE', 
+    'mobile_number': '07945301576', 
+    'ni_number': 'OB955001O', 
+    'address': {
+                'house_number': 401, 
+                'street': 'Manchester Road', 
+                'area': 'Richmond upon Thames', 
+                'postcode': 'TW11 8YZ'
+                }, 
     'name': 'Mike Smith', 
-    'bank_card': '5573575350915154 - Mastercard Expiry:2/26 CVV:540', 
+    'bank_card': {
+                'card_number': '5573573699040899', 
+                'provider': 'Mastercard', 
+                'expiry_date': '8/31', 
+                'cvv': '803'
+                }, 
     'age': 37, 
-    'birthday': '15/02/1981', 
-    'driving_license': 'Nutte80215199SQ 20', 
-    'email': 'Benjamin.Nutter@hotmail.co.uk'
-} 
+    'birthday': '27/06/2000', 
+    'driving_license': 'Ramse00627099IP 60', 
+    'email': 'Zachary.Ramsey@hotmail.co.uk'
+}
+
 ```
