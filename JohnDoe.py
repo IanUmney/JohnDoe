@@ -63,7 +63,13 @@ class JohnDoe():
             postcode = random_line.strip().split(",")[0]
             area = random_line.strip().split(",")[1]
 
-        return(f"{house_number} {street}, {area}, {postcode}")
+        address = {"house_number": house_number,
+                    "street": street,
+                    "area": area,
+                    "postcode": postcode
+                    }
+
+        return address
 
     def name(self):
         '''Get a random name from the most common forenames
@@ -102,7 +108,13 @@ class JohnDoe():
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        return f"{number} - {provider} Expiry:{expiry_date} CVV:{cvv}"
+        bank_card = {"card_number": number,
+                    "provider": provider,
+                    "expiry_date": expiry_date,
+                    "cvv": cvv
+                    }
+
+        return bank_card
 
     def age(self):
         '''Random age'''
