@@ -18,17 +18,7 @@ class JohnDoe():
 
 
     def create(self):
-        return {
-                "name": self.name,
-                "address": self.address,
-                "phone_number": self.mobile_number,
-                "ni_number": self.ni_number,
-                "bank_card": self.bank_card,
-                "age": self.age,
-                "birthday": self.birthday,
-                "driving_license": self.driving_license,
-                "email": self.email
-                }
+        return self.__dict__
 
     def mobile_number(self):
         '''Get a random phone number in UK format: 07 + 123456789'''
