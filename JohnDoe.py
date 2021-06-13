@@ -13,6 +13,7 @@ class JohnDoe():
         self.bank_card = kwargs.get("bank_card", self.bank_card())
         self.age = kwargs.get("age", self.age())
         self.birthday = kwargs.get("birthday", self.birthday())
+        self.driving_license = kwargs.get("driving_license", self.driving_license())
 
     def create(self):
         return {
@@ -22,7 +23,8 @@ class JohnDoe():
                 "ni_number": self.ni_number,
                 "bank_card": self.bank_card,
                 "age": self.age,
-                "birthday": self.birthday
+                "birthday": self.birthday,
+                "driving_license": self.driving_license
                 }
 
     def mobile_number(self):
@@ -111,9 +113,57 @@ class JohnDoe():
         return str(random.randint(18, 65))
 
     def birthday(self):
-        '''random birthday'''
+        '''Random birthday'''
         year = datetime.datetime.now().year - int(self.age)
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
+        if day < 10:
+            day = "0" + str(day)
+        if month < 10:
+            month = "0" + str(month)
 
         return f"{day}/{month}/{year}"
+
+    def driving_license(self):
+        '''Driving license according to UK format, for John Doe\'s details'''
+
+        # The first five characters of the surname 
+        # (padded with 9s if less than 5 characters)
+        if len(self.name.split(" ")[1]) < 5:
+            a = self.name.split(" ")[1][:5]
+            while len(a) < 5:
+                a += "9"
+        else:
+            a = self.name.split(" ")[1][:5]
+
+        # The decade digit from the year of birth 
+        # (e.g. for 1987 it would be 8)
+        b = self.birthday.split("/")[2][2]
+
+        # The month of birth (7th character incremented 
+        # by 5 if driver is female i.e. 51–62 instead of 01–12)
+        c = self.birthday.split("/")[1]
+
+        # The date within the month of birth
+        d = self.birthday.split("/")[0]
+
+        # The year digit from the year of birth 
+        # (e.g. for 1987 it would be 7)
+        e = self.birthday.split("/")[2][3]
+
+        # The first two initials of the first names
+        # (padded with a 9 if no middle name)
+        f = "9"
+
+        # Arbitrary digit – usually 9, but decremented to 
+        # differentiate drivers with the first 13 characters in common
+        g = "9"
+
+        # Two computer check digits
+        h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
+
+        # Appended, two digits representing the licence issue, which increases 
+        # by 1 for each licence issued
+        i = f"{random.randint(1,9)}0"
+
+        return "{}{}{}{}{}{}{}{} {}".format(a, b, c, d, e, f, g, h, i)
