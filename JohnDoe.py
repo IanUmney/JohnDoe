@@ -13,9 +13,8 @@ class JohnDoe():
         self.bank_card = kwargs.get("bank_card", self.bank_card())
         self.age = kwargs.get("age", self.age())
         self.birthday = kwargs.get("birthday", self.birthday())
-        self.driving_license = kwargs.get("driving_license", self.driving_license())
+        self.driving_license = kwargs.get("driving_license",self.driving_license())
         self.email = kwargs.get("email", self.email())
-
 
     def create(self):
         return self.__dict__
@@ -27,7 +26,7 @@ class JohnDoe():
 
         for _ in range(9):
             mobile_number += str(random.randint(0, 9))
-            
+
         return mobile_number
 
     def ni_number(self):
@@ -35,7 +34,7 @@ class JohnDoe():
         number: AB123456C'''
 
         # random ascii char
-        def rac():  
+        def rac():
             return random.choice(string.ascii_uppercase)
 
         return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
@@ -128,7 +127,7 @@ class JohnDoe():
     def driving_license(self):
         '''Driving license according to UK format, for John Doe\'s details'''
 
-        # The first five characters of the surname 
+        # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
         if len(self.name.split(" ")[1]) < 5:
             a = self.name.split(" ")[1][:5]
@@ -137,18 +136,18 @@ class JohnDoe():
         else:
             a = self.name.split(" ")[1][:5]
 
-        # The decade digit from the year of birth 
+        # The decade digit from the year of birth
         # (e.g. for 1987 it would be 8)
         b = self.birthday.split("/")[2][2]
 
-        # The month of birth (7th character incremented 
+        # The month of birth (7th character incremented
         # by 5 if driver is female i.e. 51–62 instead of 01–12)
         c = self.birthday.split("/")[1]
 
         # The date within the month of birth
         d = self.birthday.split("/")[0]
 
-        # The year digit from the year of birth 
+        # The year digit from the year of birth
         # (e.g. for 1987 it would be 7)
         e = self.birthday.split("/")[2][3]
 
@@ -156,14 +155,14 @@ class JohnDoe():
         # (padded with a 9 if no middle name)
         f = "9"
 
-        # Arbitrary digit – usually 9, but decremented to 
+        # Arbitrary digit – usually 9, but decremented to
         # differentiate drivers with the first 13 characters in common
         g = "9"
 
         # Two computer check digits
         h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
 
-        # Appended, two digits representing the licence issue, which increases 
+        # Appended, two digits representing the licence issue, which increases
         # by 1 for each licence issued
         i = f"{random.randint(1,9)}0"
 
@@ -172,8 +171,8 @@ class JohnDoe():
     def email(self):
         '''Random email based on name of John Doe'''
 
-        # Email providers with UK TLD 
-        providers = ["yahoo.co.uk", "gmail.co.uk", "live.co.uk", \
+        # Email providers with UK TLD
+        providers = ["yahoo.co.uk", "gmail.co.uk", "live.co.uk",
                     "hotmail.co.uk", "icloud.co.uk", "msn.co.uk"
                     ]
 
@@ -182,5 +181,3 @@ class JohnDoe():
         email = ".".join(self.name.split(" ")) + "@" + provider
 
         return email
-
-
