@@ -53,13 +53,16 @@ jd = JohnDoe().create()
 ```
 This will return a dictionary with all the data for the fictional person. 
 ```python
-{   
-    'name': 'Frederick Elliot', 
-    'address': '15 Church Lane, Stroud, GL13 9NG', 
-    'phone_number': '07431876264', 
-    'ni_number': 'OI761649A', 
-    'bank_card': '5573577943354436 - Mastercard Expiry:12/26 CVV:601', 
-    'age': '29'
+{
+    'mobile_number': '07649249204', 
+    'ni_number': 'TH994744X', 
+    'address': '418 Alexander Road, Lewisham, SE6 4AE', 
+    'name': 'Benjamin Nutter', 
+    'bank_card': '5573575350915154 - Mastercard Expiry:2/26 CVV:540', 
+    'age': '40', 
+    'birthday': '15/02/1981', 
+    'driving_license': 'Nutte80215199SQ 20', 
+    'email': 'Benjamin.Nutter@hotmail.co.uk'
 }
 ```
 
@@ -69,13 +72,16 @@ jd = JohnDoe(name="Mike Smith", age=37).create()
 print(jd)
 ```
 
-```bash
+```python
 {
+    'mobile_number': '07649249204', 
+    'ni_number': 'TH994744X', 
+    'address': '418 Alexander Road, Lewisham, SE6 4AE', 
     'name': 'Mike Smith', 
-    'address': '117 The Green, Scarborough, YO21 1EY', 
-    'phone_number': '07912271019', 
-    'ni_number': 'HB442445E', 
-    'bank_card': '5573578333733555 - Mastercard Expiry:5/25 CVV:779', 
-    'age': 37
-}
+    'bank_card': '5573575350915154 - Mastercard Expiry:2/26 CVV:540', 
+    'age': 37, 
+    'birthday': '15/02/1981', 
+    'driving_license': 'Nutte80215199SQ 20', 
+    'email': 'Benjamin.Nutter@hotmail.co.uk'
+} 
 ```
