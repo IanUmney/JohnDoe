@@ -12,6 +12,9 @@ This data could be used to populate test environments with arbitrary user inform
         + Random from a list of the most frequent UK surnames
 + **Age**
     + Random integer from 18 - 65
+    + Birthday
+        + current year - age = year born
+        + 1 ~ current month = month born
 + **Phone Number**
     + UK format of "07" & 9 random numbers
 + **Address**

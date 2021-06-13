@@ -1,5 +1,6 @@
 import random
 import string
+import datetime
 
 
 class JohnDoe():
@@ -11,6 +12,7 @@ class JohnDoe():
         self.name = kwargs.get("name", self.name())
         self.bank_card = kwargs.get("bank_card", self.bank_card())
         self.age = kwargs.get("age", self.age())
+        self.birthday = kwargs.get("birthday", self.birthday())
 
     def create(self):
         return {
@@ -19,7 +21,8 @@ class JohnDoe():
                 "phone_number": self.mobile_number,
                 "ni_number": self.ni_number,
                 "bank_card": self.bank_card,
-                "age": self.age
+                "age": self.age,
+                "birthday": self.birthday
                 }
 
     def mobile_number(self):
@@ -106,3 +109,11 @@ class JohnDoe():
     def age(self):
         '''Random age'''
         return str(random.randint(18, 65))
+
+    def birthday(self):
+        '''random birthday'''
+        year = datetime.datetime.now().year - int(self.age)
+        month = random.randint(1, datetime.datetime.now().month)
+        day = random.randint(1, 28)
+
+        return f"{day}/{month}/{year}"
