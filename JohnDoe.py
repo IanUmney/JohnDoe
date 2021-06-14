@@ -1,12 +1,6 @@
 import random
 import string
 import datetime
-import configparser
-import requests
-import json
-import urllib.request
-import os
-
 
 
 class JohnDoe():
@@ -22,12 +16,6 @@ class JohnDoe():
         self.ni_number = kwargs.get("ni_number", self.ni_number())
         self.bank_card = kwargs.get("bank_card", self.bank_card())
         self.driving_license = kwargs.get("driving_license", self.driving_license())
-        self.image = self.image()
-
-
-
-
-
 
     def create(self):
         self_dict = self.__dict__
@@ -265,56 +253,3 @@ class JohnDoe():
         ip4 = random.randint(so4, eo4)
 
         return "{}.{}.{}.{}".format(ip1, ip2, ip3, ip4)
-
-    def image(self):
-        '''Generate an AI powered image of a person matching
-        John Doe\'s details'''
-
-        # Load config file to get key
-        full_path = os.path.dirname(os.path.abspath(__file__))
-        config = configparser.ConfigParser()
-        config.read(os.path.join(full_path, 'config.ini'))
-
-        # Get API key from confif file
-        api_key = config["GeneratedPhotos"]["API_KEY"]
-        print(api_key)
-
-        if api_key != "":
-            # Set header for request
-            HEADER = {"Authorization": f"API-key {api_key}"}
-
-            # Define reqest age from John Doe's age
-            if self.age <= 5:
-                age = infant
-            elif self.age <=16:
-                age = child
-            elif self.age <= 25:
-                age = "young-adult"
-            elif self.age <= 50:
-                age = "adult"
-            else:
-                age = "elderly"
-
-            # Send request to API 
-            url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random"
-            r = requests.get(url, headers=HEADER)
-            jsonr = json.loads(r.text)
-
-            # Look for male result in json response
-            try: 
-                for x in jsonr["faces"]:
-                    if x["meta"]["gender"][0] == "male":
-                        # Get 512x512 image URL
-                        image_url = x["urls"][-1]["512"]
-                        break
-            except Exception as e:
-                print("Cannot get AI image at this time. Try again later", e)
-            else:
-                if image_url != "":
-                    # Save the image into src/ directory
-                    location = f"{full_path}/src/images/{self.name}_portrait.jpg"
-                    urllib.request.urlretrieve(image_url, location)
-                    return location
-                else:
-                    print("no image url")
-
