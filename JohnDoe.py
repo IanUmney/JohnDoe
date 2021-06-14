@@ -21,14 +21,33 @@ class JohnDoe():
         return self.__dict__
 
     def mobile_number(self):
-        '''Get a random phone number in UK format: 07 + 123456789'''
+        '''Get a random phone number in UK format using 
+        genuine prefixes and providers'''
 
-        mobile_number = "07"
+        with open("./src/mobile_numbers.txt","r") as file:
+            # Get random line from number file
+            random_line = random.choice(file.readlines())
 
-        for _ in range(9):
-            mobile_number += str(random.randint(0, 9))
+            # Get random number prefix
+            number = random_line.split(" ")[0]
 
-        return mobile_number
+            # Add suffix to genuine number prefix
+            while len(number) < 11:
+                number += str(random.randint(0, 9))
+
+            # Get provider associated with number prefix
+            provider = " ".join(random_line.strip().split(" ")[1:])
+
+            return {"number": number, 
+                    "provider": provider
+                    }
+
+        # mobile_number = "07"
+
+        # for _ in range(9):
+        #     mobile_number += str(random.randint(0, 9))
+
+        # return mobile_number
 
     def ni_number(self):
         '''Gets string with the format of a national insurance
