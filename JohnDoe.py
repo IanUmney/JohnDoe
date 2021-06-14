@@ -6,16 +6,16 @@ import datetime
 class JohnDoe():
 
     def __init__(self, **kwargs):
-        self.mobile_number = str(kwargs.get("mobile_number", self.mobile_number()))
-        self.ni_number = kwargs.get("ni_number", self.ni_number())
-        self.address = kwargs.get("address", self.address())
         self.name = kwargs.get("name", self.name())
-        self.bank_card = kwargs.get("bank_card", self.bank_card())
         self.age = kwargs.get("age", self.age())
-        self.birthday = kwargs.get("birthday", self.birthday())
-        self.driving_license = kwargs.get("driving_license",self.driving_license())
+        self.birthday = kwargs.get("birthday", self.birthday()) 
+        self.mobile_number = str(kwargs.get("mobile_number", self.mobile_number()))
+        self.address = kwargs.get("address", self.address())
         self.email = kwargs.get("email", self.email())
         self.ip_address = kwargs.get("ip_address", self.ip_address())
+        self.ni_number = kwargs.get("ni_number", self.ni_number())
+        self.bank_card = kwargs.get("bank_card", self.bank_card())
+        self.driving_license = kwargs.get("driving_license", self.driving_license())
 
     def create(self):
         return self.__dict__
@@ -124,7 +124,7 @@ class JohnDoe():
     def birthday(self):
         '''Random birthday'''
 
-        year = datetime.datetime.now().year - int(self.age)
+        year = datetime.datetime.now().year - self.age
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
