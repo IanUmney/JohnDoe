@@ -35,6 +35,8 @@ This data could be used to populate test environments with arbitrary user inform
     + UK formatted number with John Doe's information
 + **Email**
     + forename.surname@ random email provider with UK TLD
++ **IP Address**
+    + Uses genuine UK IP blocks to create a random IP address within that range.
 
 ## Setup
 1. Clone the repo into the desired location
