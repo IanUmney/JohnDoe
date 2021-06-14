@@ -141,12 +141,12 @@ class JohnDoe():
 
         # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
-        if len(self.name.split(" ")[1]) < 5:
-            a = self.name.split(" ")[1][:5].lower()
+        if len(self.name.split(" ")[-1]) < 5:
+            a = self.name.split(" ")[-1][:5].lower()
             while len(a) < 5:
                 a += "9"
         else:
-            a = self.name.split(" ")[1][:5]
+            a = self.name.split(" ")[-1][:5].lower()
 
         # The decade digit from the year of birth
         # (e.g. for 1987 it would be 8)
