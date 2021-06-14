@@ -117,5 +117,6 @@ bank_card
 driving_license : smith90521999BJ 20
 image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
 ```
+### Example AI generated image
 ![Example AI generated image](https://github.com/IanUmney/JohnDoe/blob/main/src/images/Mike%20Smith_portrait.jpg?raw=true)
 
