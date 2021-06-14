@@ -406,19 +406,12 @@
 07598 O2  
 07599 O2  
 076000 Sound Advertising
-
 076002 PageOne
-
 076006 24 Seven Communications
-
 076007 Relax Telecom
-
 076020 O2 
-
 076022 Relax Telecom
-
 07623 PageOne
-
 076240 Manx Telecom
 076241 Manx Telecom
 076242 Sure
@@ -430,123 +423,67 @@
 076248 Manx Telecom
 076249 Manx Telecom
 07625 O2 
-
 07626 O2 
-
 076400 Core Telecom
-
 076401 Telecom2
 076402 FIO Telecom
-
 076403 PageOne
-
 076404 PageOne
-
 076406 PageOne
-
 076407 PageOne
-
 07641 EE 
-
 076440 O2 
-
 076441 O2 
-
 076446 Media Telecom
-
 07654 PageOne
-
 076591 Vodafone
-
 076592 PageOne
-
 076593 Vodafone
-
 076594 Vodafone
-
 076595 Vodafone
-
 076596 Vodafone
-
 076598 Vodafone
-
 076599 PageOne
-
 076600 Plus Telecom
-
 076601 PageOne
-
 076602 PageOne
-
 076603 PageOne
-
 076604 PageOne
-
 076605 PageOne
-
 076606 24 Seven Communications
-
 07661 PageOne
-
 076633 Syntec 
-
 076636 Relax Telecom
-
 076637 Vodafone
-
 076660 24 Seven Communications
-
 076661 Vodafone
-
 076662 Vodafone
-
 076663 Vodafone
-
 076664 Vodafone
-
 076665 Vodafone
-
 076666 Vodafone
-
 076667 Vodafone
-
 076668 Vodafone
-
 076669 FIO Telecom
-
 076690 O2 
-
 076691 O2 
-
 076692 O2 
-
 076693 Confabulate
-
 076698 O2 
-
 076699 O2 
-
 076770 24 Seven Communications
-
 076772 Relax Telecom
-
 076776 Telency
-
 076778 Core Telecompager numbers UK
-
 07681 PageOne
-
 07693 O2 
-
 07699 Vodafone
-
 077000 Cloud9 Communications   
 077001 Nationwide Telephone Assistance 
 077003 Sure
 077007 Sure
 077008 Sure
 077009 Unused numbers - reserved for use in drama and fiction
-
 07701 O2  
 07702 O2  
 07703 O2  
