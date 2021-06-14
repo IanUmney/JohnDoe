@@ -38,6 +38,17 @@ This data could be used to populate test environments with arbitrary user inform
     + forename.surname@ random email provider with UK TLD
 + **IP Address**
     + Uses genuine UK IP blocks to create a random IP address within that range.
++ **Image**
+    + Using https://generated.photos/ API, returns an AI image based on the details of John Doe.
+    + Saves images into src/images with the file name of the John Doe you created. 
+        + `/John Doe_portrait.jpg`
+    + You must obtain an API key from https://generated.photos/ for this to work.
+        + Free sign up and 50 free monthly requests.
+    + **Enter the API key in the config.ini folder like this:**
+```
+[GeneratedPhotos]
+API_KEY : Enter_Your_API_Here
+```
 
 ## Setup
 1. Clone the repo into the desired location
@@ -85,23 +96,26 @@ jd = JohnDoe(name="Mike Smith", age=37).create()
 
 ```
 name : Mike Smith
-age : 37
-birthday : 03/04/1984
+age : 22
+birthday : 21/05/1999
 mobile_number
-    number : 07451849776
-    provider : Vectone Mobile
+    number : 07735167188
+    provider : Three
 address
-    house_number : 317
-    street : Chester Road
-    area : Buckinghamshire
-    postcode : HP12 4PY
+    house_number : 257
+    street : Park Road
+    area : Pembrokeshire
+    postcode : SA61 1YG
 email : Mike.Smith@hotmail.co.uk
-ip_address : 62.216.140.79
-ni_number : JA126975V
+ip_address : 213.253.175.72
+ni_number : FC812154X
 bank_card
-    card_number : 5573573782344289
+    card_number : 5573576189231788
     provider : Mastercard
-    expiry_date : 8/27
-    cvv : 219
-driving_license : smith80403499UN 10
+    expiry_date : 5/31
+    cvv : 255
+driving_license : smith90521999BJ 20
+image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
 ```
+![Example AI generated image](https://github.com/IanUmney/JohnDoe/blob/main/src/images/Mike%20Smith_portrait.jpg?raw=true)
+
