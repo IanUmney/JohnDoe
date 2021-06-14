@@ -49,13 +49,11 @@ class JohnDoe():
         house_number = random.randint(1, 500)
 
         # Get random street name
-        _f = open("./src/streets.txt", "r")
-        line = next(_f)
-        for num, aline in enumerate(_f, 2):
-            if random.randrange(num):
-                continue
-            street = aline.strip()
-        _f.close()
+        with open("./src/streets.txt", "r") as street_file:
+            line = street_file.readlines()
+            random_line = random.choice(line)
+            street = random_line.strip()
+
 
         # Get random postcode and area
         with open("./src/postcodes.txt") as file:
