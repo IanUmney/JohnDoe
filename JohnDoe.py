@@ -119,7 +119,7 @@ class JohnDoe():
     def age(self):
         '''Random age'''
 
-        return str(random.randint(18, 65))
+        return random.randint(18, 65)
 
     def birthday(self):
         '''Random birthday'''
