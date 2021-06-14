@@ -16,7 +16,8 @@ This data could be used to populate test environments with arbitrary user inform
         + current year - age = year born
         + 1 ~ current month = month born
 + **Phone Number**
-    + UK format of "07" & 9 random numbers
+    + Genuine UK prefixes and providers
+    + Random suffixes
 + **Address**
     + House number 
         + Random integer from 1 - 500
