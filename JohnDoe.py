@@ -54,6 +54,7 @@ class JohnDoe():
             if random.randrange(num):
                 continue
             street = aline.strip()
+        _f.close()
 
         # Get random postcode and area
         with open("./src/postcodes.txt") as file:
