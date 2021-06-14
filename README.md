@@ -56,57 +56,52 @@ jd = JohnDoe().create()
 ```
 This will return a dictionary with all the data for the fictional person. 
 ```python
-{
-    'mobile_number': '07945301576', 
-    'ni_number': 'OB955001O', 
-    'address': {
-                'house_number': 401, 
-                'street': 'Manchester Road', 
-                'area': 'Richmond upon Thames', 
-                'postcode': 'TW11 8YZ'
-                }, 
-    'name': 'Zachary Ramsey', 
-    'bank_card': {
-                'card_number': '5573573699040899', 
-                'provider': 'Mastercard', 
-                'expiry_date': '8/31', 
-                'cvv': '803'
-                }, 
-    'age': '21', 
-    'birthday': '27/06/2000', 
-    'driving_license': 'Ramse00627099IP 60', 
-    'email': 'Zachary.Ramsey@hotmail.co.uk'
-}
-
+name : Benjamin Pastor
+age : 55
+birthday : 09/02/1966
+mobile_number : 
+    number : 07660654789
+    provider : 24 Seven Communications
+address : 
+    house_number : 409
+    street : Church Street
+    area : Wokingham
+    postcode : RG5 3NP
+email : Benjamin.Pastor@yahoo.co.uk
+ip_address : 130.32.142.49
+ni_number : AB812065R
+bank_card : 
+    card_number : 5573574826858015
+    provider : Mastercard
+    expiry_date : 5/25
+    cvv : 309
+driving_license : pasto60209699IN 30
 ```
 
 You can pass `**kwargs` to the JohnDoe class to specify particular variables.
 ```python
 jd = JohnDoe(name="Mike Smith", age=37).create()
-print(jd)
 ```
 
 ```python
-{
-    'mobile_number': '07945301576', 
-    'ni_number': 'OB955001O', 
-    'address': {
-                'house_number': 401, 
-                'street': 'Manchester Road', 
-                'area': 'Richmond upon Thames', 
-                'postcode': 'TW11 8YZ'
-                }, 
-    'name': 'Mike Smith', 
-    'bank_card': {
-                'card_number': '5573573699040899', 
-                'provider': 'Mastercard', 
-                'expiry_date': '8/31', 
-                'cvv': '803'
-                }, 
-    'age': 37, 
-    'birthday': '27/06/2000', 
-    'driving_license': 'Ramse00627099IP 60', 
-    'email': 'Zachary.Ramsey@hotmail.co.uk'
-}
-
+name : Mike Smith
+age : 37
+birthday : 03/04/1984
+mobile_number
+    number : 07451849776
+    provider : Vectone Mobile
+address
+    house_number : 317
+    street : Chester Road
+    area : Buckinghamshire
+    postcode : HP12 4PY
+email : Mike.Smith@hotmail.co.uk
+ip_address : 62.216.140.79
+ni_number : JA126975V
+bank_card
+    card_number : 5573573782344289
+    provider : Mastercard
+    expiry_date : 8/27
+    cvv : 219
+driving_license : smith80403499UN 10
 ```
