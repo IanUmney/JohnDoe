@@ -228,4 +228,4 @@ class JohnDoe():
         ip3 = random.randint(so3, eo3)
         ip4 = random.randint(so4, eo4)
 
-        print("{}.{}.{}.{}".format(ip1, ip2, ip3, ip4))
+        return "{}.{}.{}.{}".format(ip1, ip2, ip3, ip4)
