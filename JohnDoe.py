@@ -15,6 +15,7 @@ class JohnDoe():
         self.birthday = kwargs.get("birthday", self.birthday())
         self.driving_license = kwargs.get("driving_license",self.driving_license())
         self.email = kwargs.get("email", self.email())
+        self.ip_address = kwargs.get("ip_address", self.ip_address())
 
     def create(self):
         return self.__dict__
@@ -194,3 +195,37 @@ class JohnDoe():
         email = ".".join(self.name.split(" ")) + "@" + provider
 
         return email
+
+    def ip_address(self):
+        '''Generate a random IP based on a list 
+        of genuine UK IP address blocks.'''
+
+        # Get random line from IP csv file
+        with open('./src/ip_address.csv') as f:
+            ip_range = next(f)
+            for num, aline in enumerate(f, 2):
+                if random.randrange(num):
+                    continue
+                ip_range = aline.strip("\n")
+
+        # Get start of IP block
+        ip_start = ip_range.split(",")[0]
+        so1 = int(ip_start.split(".")[0])
+        so2 = int(ip_start.split(".")[1])
+        so3 = int(ip_start.split(".")[2])
+        so4 = int(ip_start.split(".")[3])
+
+        # Get end of IP block
+        ip_end = ip_range.split(",")[1]
+        eo1 = int(ip_end.split(".")[0])
+        eo2 = int(ip_end.split(".")[1])
+        eo3 = int(ip_end.split(".")[2])
+        eo4 = int(ip_end.split(".")[3])
+
+        # Generate random IP in block
+        ip1 = random.randint(so1, eo1)
+        ip2 = random.randint(so2, eo2)
+        ip3 = random.randint(so3, eo3)
+        ip4 = random.randint(so4, eo4)
+
+        print("{}.{}.{}.{}".format(ip1, ip2, ip3, ip4))
