@@ -18,7 +18,14 @@ class JohnDoe():
         self.driving_license = kwargs.get("driving_license", self.driving_license())
 
     def create(self):
-        return self.__dict__
+        self_dict = self.__dict__
+        for x in self_dict:
+            if type(self_dict[x]) == dict:
+                print(f"{x}")
+                for y in self_dict[x]:
+                    print(f"\t{y} : {self_dict[x][y]}")
+            else:
+                print(f"{x} : {self_dict[x]}")
 
     def mobile_number(self):
         '''Get a random phone number in UK format using 
