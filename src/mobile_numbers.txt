@@ -1,0 +1,911 @@
+07106 O2  
+07107 O2  
+07300 EE  
+07301 EE  
+07302 EE  
+07303 EE  
+07304 EE  
+07305 Virgin Mobile   
+07306 Virgin Mobile   
+07307 Three   
+07308 Three   
+07309 Three   
+07310 Three   
+07311 Three   
+07312 Three   
+07340 Vodafone
+07341 Vodafone
+07342 Vodafone
+07354 O2  
+07355 O2  
+07357 Virgin Mobile   
+073590 Sky 
+073591 Sky 
+073592 Sky 
+073593 Sky 
+073594 Sky 
+073595 Sky 
+073596 Sky 
+07360 Three   
+07361 Three   
+07362 Three   
+07363 Three   
+073640 University of Strathclyde   
+073644 Pareteum Europe 
+07365 Three   
+07366 Three   
+07367 Three   
+073680 Tata Communications 
+073681 Sky 
+073682 Sky 
+073683 Sky 
+073684 Sky 
+073685 Sky 
+073686 Sky 
+073687 Vodafone
+073688 Sky 
+073689 Sky 
+073690 Telet Research  
+073692 Sky 
+073699 Anywhere SIM
+07375 EE  
+07376 EE  
+07377 EE  
+073780 Limitless Mobile
+073781 Three   
+073782 Three   
+073783 Three   
+073784 Three   
+073785 Three   
+073786 Three   
+073787 Three   
+073788 Three   
+073789 Three   
+07379 Vodafone
+07380 Three   
+07381 O2  
+07382 O2  
+07383 Three   
+07384 Vodafone
+07385 Vodafone
+07386 Vodafone
+07387 Vodafone
+07388 Vodafone
+073890 Three   
+073891 Three   
+073896 Hanhaa  
+073897 Vodafone
+073898 Vodafone
+07390 Home Office 
+07391 Vodafone
+07392 Vodafone
+07393 Vodafone
+07394 O2  
+07395 O2  
+07396 EE  
+07397 Three   
+07398 EE  
+07399 EE  
+07400 Three   
+07401 Three   
+07402 Three   
+07403 Three   
+07404 Lycamobile  
+07405 Lycamobile  
+074065 Telecom2
+074066 24 Seven
+074067 TGL Services
+074068 08Direct
+074069 CardBoardFish   
+07407 Vodafone
+07408 Truphone
+07409 EE  
+07410 EE  
+07411 Three   
+07412 Three   
+07413 Three   
+07414 Three   
+07415 EE  
+07416 EE  
+074172 Core Telecom
+074173 Lycamobile  
+074174 Lycamobile  
+074175 Lycamobile  
+074178 Truphone
+074179 Core Telecom
+074180 Three   
+074181 Bellingham Telecommunications   
+074182 TGL Services
+074183 Tismi   
+074184 Manx Telecom
+074185 Telecom North America Mobile
+074186 Ace Call
+074187 Tata Communications 
+074189 Tata Communications 
+07419 EE  
+07420 EE  
+07421 EE  
+07422 EE  
+07423 Vodafone
+07424 Lycamobile  
+07425 Vodafone
+07426 Three   
+07427 Three   
+07428 Three   
+07429 Three   
+07430 O2  
+07431 O2  
+07432 EE  
+07433 EE  
+07434 EE  
+07435 Vodafone
+07436 Vodafone
+07437 Vodafone
+07438 Lycamobile  
+07439 TalkTalk
+074400 Lycamobile  
+074401 Lycamobile  
+074402 Lycamobile  
+074403 Lycamobile  
+074404 Lycamobile  
+074405 Lycamobile  
+074406 Lycamobile  
+074407 Lycamobile  
+074409 Cloud9 Communications   
+074410 Sound Advertising   
+074411 Andrews & Arnold
+074413 Stour Marine
+074414 Tismi   
+074415 Synectiv
+074416 Vodafone
+074417 Synectiv
+074418 Core Telecom
+074419 Voxbone SA  
+07442 Vodafone
+07443 Vodafone
+07444 Vodafone
+07445 Three   
+07446 Three   
+07447 Three   
+07448 Lycamobile  
+07449 Three   
+07450 Three   
+074510 Vectone Mobile  
+074511 Vectone Mobile  
+074512 Tismi   
+074513 Vectone Mobile  
+074514 Vectone Mobile  
+074516 UK Broadband Ltd
+074517 UK Broadband Ltd
+074518 Vectone Mobile  
+074519 Vectone Mobile  
+074520 Manx Telecom
+074521 Manx Telecom
+074522 Manx Telecom
+074523 Manx Telecom
+074524 Manx Telecom
+074525 Manx Telecom
+074526 Manx Telecom
+074527 Three   
+074528 Three   
+074529 Three   
+07453 Three   
+07454 Three   
+07455 Three   
+07456 Three   
+074570 Vectone Mobile  
+074571 Vectone Mobile  
+074572 Marathon Telecom
+074573 Vectone Mobile  
+074574 Voicetec Systems
+074575 Vectone Mobile  
+074576 Sure
+074577 Spacetel UK 
+074580 Gamma Telecom   
+074581 Gamma Telecom   
+074582 Premium Routing 
+074583 Virgin Mobile   
+074584 Airwave Solutions   
+074585 Marathon Telecom
+074586 Three   
+074587 Tango Networks  
+074588 Tango Networks  
+074589 Three   
+07459 Lycamobile  
+07460 Three   
+07461 O2  
+07462 Three   
+07463 Three   
+07464 Vodafone
+074650 Vectone Mobile  
+074651 Vectone Mobile  
+074652 Three   
+074653 Compatel
+074654 Three   
+074655 Global Reach Networks   
+074656 Three   
+074657 Three   
+074658 Three   
+074659 Three   
+07466 Lycamobile  
+07467 Vodafone
+07468 Vodafone
+07469 Vodafone
+07470 Vodafone
+07471 Vodafone
+07472 Three   
+07473 Three   
+07474 Three   
+07475 Three   
+07476 Three   
+07477 Three   
+07478 Three   
+07479 Three   
+07480 Three   
+07481 Three   
+07482 Three   
+07483 EE  
+07484 EE  
+07485 EE  
+07486 EE  
+07487 EE  
+074880 Fogg Mobile 
+074881 CESG
+074882 Sky 
+074883 Sky 
+074884 Three   
+074885 Three   
+074886 Lanonyx Telecom 
+074887 Three   
+074888 Ziron   
+074889 Three   
+07489 O2  
+07490 Three   
+07491 Three   
+07492 Three   
+07493 Vodafone
+07494 EE  
+07495 EE  
+07496 EE  
+07497 EE  
+07498 EE  
+07499 O2  
+07500 Vodafone
+07501 Vodafone
+07502 Vodafone
+07503 Vodafone
+07504 EE  
+07505 EE  
+07506 EE  
+07507 EE  
+07508 EE  
+07509 Jersey Telecom  
+07510 O2  
+07511 O2  
+07512 O2  
+07513 O2  
+07514 O2  
+07515 O2  
+07516 O2  
+07517 O2  
+07518 O2  
+07519 O2  
+075200 Simwood eSMS
+075201 BT  
+075202 Vectone Mobile  
+075204 Core Group  
+075205 Esendex 
+075206 Tismi   
+075207 AQL 
+07521 O2  
+07522 O2  
+07523 O2  
+07525 O2  
+07526 O2  
+07527 EE  
+07528 EE  
+07529 EE  
+07530 EE  
+07531 EE  
+075320 EE  
+075321 EE  
+075322 EE  
+075323 EE  
+075324 EE  
+075326 Three   
+075327 Three   
+075328 Three   
+075329 Mobiweb Telecom 
+07533 Three   
+07534 EE  
+07535 EE  
+07536 EE  
+075370 Wavecrest   
+075371 Stour Marine
+075373 Swiftnet
+075374 Vodafone
+075376 Sound Advertising   
+075377 CFL Communications  
+075378 Three   
+075379 Three   
+07538 EE  
+07539 EE  
+07540 O2  
+07541 O2  
+07542 O2  
+07543 O2  
+07544 O2  
+07545 O2  
+07546 O2  
+07547 O2  
+07548 O2  
+07549 O2  
+07550 EE  
+07551 Vodafone
+07552 Vodafone
+07553 Vodafone
+07554 Vodafone
+07555 Vodafone
+07556 EE  
+07557 Vodafone
+075580 Mobile FX Services  
+075588 Cloud9 Communications   
+075590 Mars Communications 
+075592 IPV6
+075593 Globecom International  
+075594 Truphone
+075595 Confabulate 
+075596 Lleida.net  
+075597 Core Telecom
+075598 Nodemax 
+075599 Resilient   
+07560 O2  
+07561 O2  
+07562 O2  
+07563 O2  
+07564 O2  
+07565 O2  
+07566 O2  
+07567 O2  
+07568 O2  
+07569 O2  
+07570 Vodafone
+07572 EE  
+07573 EE  
+07574 EE  
+07575 Three   
+07576 Three   
+07577 Three   
+07578 Three   
+07579 EE  
+07580 EE  
+07581 EE  
+07582 EE  
+07583 EE  
+07584 Vodafone
+07585 Vodafone
+07586 Vodafone
+07587 Vodafone
+07588 Three   
+075891 Dynamic Mobile Billing  
+075892 Dynamic Mobile Billing  
+075893 Dynamic Mobile Billing  
+075894 Vectone Mobile  
+075895 Vectone Mobile  
+075896 Vectone Mobile  
+075897 Vectone Mobile  
+075898 Test2date   
+07590 O2  
+07591 O2  
+07592 O2  
+07593 O2  
+07594 O2  
+07595 O2  
+07596 O2  
+07597 O2  
+07598 O2  
+07599 O2  
+076000 Sound Advertising
+
+076002 PageOne
+
+076006 24 Seven Communications
+
+076007 Relax Telecom
+
+076020 O2 
+
+076022 Relax Telecom
+
+07623 PageOne
+
+076240 Manx Telecom
+076241 Manx Telecom
+076242 Sure
+076243 Manx Telecom
+076244 Manx Telecom
+07624 50Bluewave Communications 
+07624 56Sure
+076246 Manx Telecom
+076248 Manx Telecom
+076249 Manx Telecom
+07625 O2 
+
+07626 O2 
+
+076400 Core Telecom
+
+076401 Telecom2
+076402 FIO Telecom
+
+076403 PageOne
+
+076404 PageOne
+
+076406 PageOne
+
+076407 PageOne
+
+07641 EE 
+
+076440 O2 
+
+076441 O2 
+
+076446 Media Telecom
+
+07654 PageOne
+
+076591 Vodafone
+
+076592 PageOne
+
+076593 Vodafone
+
+076594 Vodafone
+
+076595 Vodafone
+
+076596 Vodafone
+
+076598 Vodafone
+
+076599 PageOne
+
+076600 Plus Telecom
+
+076601 PageOne
+
+076602 PageOne
+
+076603 PageOne
+
+076604 PageOne
+
+076605 PageOne
+
+076606 24 Seven Communications
+
+07661 PageOne
+
+076633 Syntec 
+
+076636 Relax Telecom
+
+076637 Vodafone
+
+076660 24 Seven Communications
+
+076661 Vodafone
+
+076662 Vodafone
+
+076663 Vodafone
+
+076664 Vodafone
+
+076665 Vodafone
+
+076666 Vodafone
+
+076667 Vodafone
+
+076668 Vodafone
+
+076669 FIO Telecom
+
+076690 O2 
+
+076691 O2 
+
+076692 O2 
+
+076693 Confabulate
+
+076698 O2 
+
+076699 O2 
+
+076770 24 Seven Communications
+
+076772 Relax Telecom
+
+076776 Telency
+
+076778 Core Telecompager numbers UK
+
+07681 PageOne
+
+07693 O2 
+
+07699 Vodafone
+
+077000 Cloud9 Communications   
+077001 Nationwide Telephone Assistance 
+077003 Sure
+077007 Sure
+077008 Sure
+077009 Unused numbers - reserved for use in drama and fiction
+
+07701 O2  
+07702 O2  
+07703 O2  
+07704 O2  
+07705 O2  
+07706 O2  
+07707 O2  
+07708 O2  
+07709 O2  
+07710 O2  
+07711 O2  
+07712 O2  
+07713 O2  
+07714 O2  
+07715 O2  
+07716 O2  
+07717 Vodafone
+07718 O2  
+07719 O2  
+07720 O2  
+07721 Vodafone
+07722 EE  
+07723 Three   
+07724 O2  
+07725 O2  
+07726 EE  
+07727 Three   
+07728 Three   
+07729 O2  
+07730 O2  
+07731 O2  
+07732 O2  
+07733 Vodafone
+07734 O2  
+07735 Three   
+07736 O2  
+07737 Three   
+07738 O2  
+07739 O2  
+07740 O2  
+07741 Vodafone
+07742 O2  
+07743 O2  
+07744 Core Group  
+07745 O2  
+07746 O2  
+07747 Vodafone
+07748 Vodafone
+07749 O2  
+07750 O2  
+07751 O2  
+07752 O2  
+077530 Airwave Solutions   
+077531 O2  
+077532 O2  
+077533 O2  
+077534 O2  
+077535 O2  
+077536 O2  
+077537 O2  
+077538 O2  
+077539 O2  
+07754 O2  
+07755 Core Group  
+07756 O2  
+07757 EE  
+07758 EE  
+07759 O2  
+07760 Vodafone
+07761 O2  
+07762 O2  
+07763 O2  
+07764 O2  
+07765 Vodafone
+07766 Vodafone
+07767 Vodafone
+07768 Vodafone
+07769 Vodafone
+07770 Vodafone
+07771 Vodafone
+07772 EE  
+07773 EE  
+07774 Vodafone
+07775 Vodafone
+07776 Vodafone
+07777 EE  
+07778 Vodafone
+07779 EE  
+07780 Vodafone
+07781 Sure
+07782 Three   
+07783 O2  
+07784 O2  
+07785 Vodafone
+07786 Vodafone
+07787 Vodafone
+07788 Vodafone
+07789 Vodafone
+07790 EE  
+07791 EE  
+07792 EE  
+07793 O2  
+07794 EE  
+07795 Vodafone
+07796 Vodafone
+07797 Jersey Telecom  
+07798 Vodafone
+07799 Vodafone
+07800 EE  
+07801 O2  
+07802 O2  
+07803 O2  
+07804 EE  
+07805 EE  
+07806 EE  
+07807 EE  
+07808 O2  
+07809 O2  
+07810 Vodafone
+07811 EE  
+07812 EE  
+07813 EE  
+07814 EE  
+07815 EE  
+07816 EE  
+07817 EE  
+07818 Vodafone
+07819 O2  
+07820 O2  
+07821 O2  
+078220 Flextel 
+078221 Swiftnet
+078224 AQL 
+078225 Icron Network   
+078226 AQL 
+078228 Vodafone
+078229 Dynamic Mobile Billing  
+07823 Vodafone
+07824 Vodafone
+07825 Vodafone
+07826 Vodafone
+07827 Vodafone
+07828 Three   
+07829 Airtel Vodafone 
+07830 Three   
+07831 Vodafone
+07832 Three   
+07833 Vodafone
+07834 O2  
+07835 O2  
+07836 Vodafone
+07837 EE  
+07838 Three   
+078391 Airtel Vodafone 
+078392 Airtel Vodafone 
+078397 Airtel Vodafone 
+078398 Sure
+07840 O2  
+07841 O2  
+07842 O2  
+07843 O2  
+07844 O2  
+07845 O2  
+07846 Three   
+07847 EE  
+07848 Three   
+07849 O2  
+07850 O2  
+07851 O2  
+07852 EE  
+07853 Three   
+07854 EE  
+07855 EE  
+07856 O2  
+07857 O2  
+07858 O2  
+07859 Three   
+07860 O2  
+07861 Three   
+07862 Three   
+07863 Three   
+07864 O2  
+07865 Three   
+07866 EE  
+07867 Vodafone
+07868 Three   
+07869 Three   
+07870 EE  
+07871 O2  
+078720 O2  
+078721 O2  
+078722 Cloud9 Communications   
+078723 O2  
+078724 O2  
+078725 O2  
+078726 O2  
+078727 Telecom 10  
+078728 O2  
+078729 O2  
+078730 Telesign Mobile 
+078731 O2  
+078732 O2  
+078733 O2  
+078734 O2  
+078735 O2  
+078736 O2  
+078737 O2  
+078738 O2  
+078739 O2  
+078740 O2  
+078741 O2  
+078742 O2  
+078743 O2  
+078744 Citrus Telecommunications   
+078746 O2  
+078747 O2  
+078748 O2  
+078749 O2  
+07875 EE  
+07876 Vodafone
+07877 Three   
+07878 Three   
+07879 Vodafone
+07880 Vodafone
+07881 Vodafone
+07882 Three   
+07883 Three   
+07884 Vodafone
+07885 O2  
+07886 Three   
+07887 Vodafone
+07888 Three   
+07889 O2  
+07890 EE  
+07891 EE  
+078920 Hay Systems 
+078921 Vectone Mobile  
+078923 O2  
+078924 O2  
+078925 Flextel 
+078926 O2  
+078927 O2  
+078928 O2  
+078929 O2  
+078930 Magrathea   
+078931 24 Seven
+078932 O2  
+078934 O2  
+078935 O2  
+078936 O2  
+078937 O2  
+078938 AQL 
+078939 Citrus Telecommunications   
+07894 O2  
+07895 O2  
+07896 EE  
+07897 Three   
+07898 Three   
+07899 Vodafone
+07900 Vodafone
+07901 Vodafone
+07902 O2  
+07903 EE  
+07904 EE  
+07905 EE  
+07906 EE  
+07907 O2  
+07908 EE  
+07909 Vodafone
+07910 EE  
+079110 Marathon Telecom
+079111 JT Guernsey 
+079112 24 Seven
+079117 JT Guernsey 
+079118 24 Seven
+07912 O2  
+07913 EE  
+07914 EE  
+07915 Three   
+07916 Three   
+07917 Vodafone
+07918 Vodafone
+07919 Vodafone
+07920 Vodafone
+07921 O2  
+07922 O2  
+07923 O2  
+07924 Manx Telecom
+07925 O2  
+07926 O2  
+07927 O2  
+07928 O2  
+07929 EE  
+07930 EE  
+07931 EE  
+07932 EE  
+07933 O2  
+07934 O2  
+07935 O2  
+07936 O2  
+07937 Jersey Telecom  
+07938 O2  
+07939 EE  
+07940 EE  
+07941 EE  
+07942 EE  
+07943 EE  
+07944 EE  
+07945 EE  
+07946 EE  
+07947 EE  
+07948 EE  
+07949 EE  
+07950 EE  
+07951 EE  
+07952 EE  
+07953 EE  
+07954 EE  
+07955 O2  
+07956 EE  
+07957 EE  
+07958 EE  
+07959 EE  
+07960 EE  
+07961 EE  
+07962 EE  
+07963 EE  
+07964 EE  
+07965 EE  
+07966 EE  
+07967 EE  
+07968 EE  
+07969 EE  
+07970 EE  
+07971 EE  
+07972 EE  
+07973 EE  
+07974 EE  
+07975 EE  
+07976 EE  
+07977 EE  
+079781 QX Telecom  
+079782 Cloud9 Communications   
+079783 Cloud9 Communications   
+079785 Icron Network   
+079786 Dynamic Mobile Billing  
+079787 TeleWare
+079788 Truphone
+079789 IV Response 
+07979 Vodafone
+07980 EE  
+07981 EE  
+07982 EE  
+07983 EE  
+07984 EE  
+07985 EE  
+07986 EE  
+07987 EE  
+07988 Three   
+07989 EE  
+07990 Vodafone
+07999 O2
