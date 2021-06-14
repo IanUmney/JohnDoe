@@ -25,7 +25,7 @@ This data could be used to populate test environments with arbitrary user inform
     + Postcode and area 
         + Random but genuine - Meaning the specific postcode is in the listed area
 + **National Insurance Number**
-    + UK format of _AB12345678C_
+    + UK format of _AB123456C_
 + **Bank Card Details**
     + Bank card numbers
         + Genuine first 6-digit account IDs and then 10 random numbers
