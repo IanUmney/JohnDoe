@@ -55,7 +55,7 @@ from JohnDoe import JohnDoe
 jd = JohnDoe().create()
 ```
 This will return a dictionary with all the data for the fictional person. 
-```python
+```
 name : Benjamin Pastor
 age : 55
 birthday : 09/02/1966
@@ -83,7 +83,7 @@ You can pass `**kwargs` to the JohnDoe class to specify particular variables.
 jd = JohnDoe(name="Mike Smith", age=37).create()
 ```
 
-```python
+```
 name : Mike Smith
 age : 37
 birthday : 03/04/1984
