@@ -142,7 +142,7 @@ class JohnDoe():
         # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
         if len(self.name.split(" ")[1]) < 5:
-            a = self.name.split(" ")[1][:5]
+            a = self.name.split(" ")[1][:5].lower()
             while len(a) < 5:
                 a += "9"
         else:
