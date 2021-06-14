@@ -6,7 +6,7 @@ import datetime
 class JohnDoe():
 
     def __init__(self, **kwargs):
-        self.mobile_number = kwargs.get("mobile_number", self.mobile_number())
+        self.mobile_number = str(kwargs.get("mobile_number", self.mobile_number()))
         self.ni_number = kwargs.get("ni_number", self.ni_number())
         self.address = kwargs.get("address", self.address())
         self.name = kwargs.get("name", self.name())
