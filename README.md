@@ -1,8 +1,63 @@
 
 # JohnDoe 
-This simple program creates near-realistic fake data for a fictional British subject. 
+This simple program creates near-realistic fake data for a fictional subject. 
 
 This data could be used to populate test environments with arbitrary user information.
+
+## Setup
+1. Clone the repo into the desired location
+```bash
+$ git clone https://github.com/IanUmney/JohnDoe
+```
+2. Change into that directory
+```bash
+$ cd JohnDoe/
+```
+
+## Usage
+Call the _JohnDoe.py_ file directly. This will print a dictionary-style output of the information.
+```bash
+python3 JohnDoe.py
+```
+
+### Importing the module
+Import the _JohnDoe.py_ file into an existing program and call the .create() function.
+```python
+from JohnDoe import JohnDoe
+
+jd = JohnDoe()
+jd.create()
+```
+
+You can pass `**kwargs` to the JohnDoe object to specify particular variables.
+
+```python
+jd = JohnDoe(name="Mike Smith", age=22).create()
+```
+**Output from above command**
+```
+name : Mike Smith
+age : 22
+birthday : 21/05/1999
+mobile_number
+    number : 07735167188
+    provider : Three
+address
+    house_number : 257
+    street : Park Road
+    area : Pembrokeshire
+    postcode : SA61 1YG
+email : Mike.Smith@hotmail.co.uk
+ip_address : 213.253.175.72
+ni_number : FC812154X
+bank_card
+    card_number : 5573576189231788
+    provider : Mastercard
+    expiry_date : 5/31
+    cvv : 255
+driving_license : smith90521999BJ 20
+image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
+```
 
 ## data:
 + **Name**
@@ -44,56 +99,26 @@ This data could be used to populate test environments with arbitrary user inform
         + `/John Doe_portrait.jpg`
     + You must obtain an API key from https://generated.photos/ for this to work.
         + Free sign up and 50 free monthly requests.
-    + **Enter the API key in the config.ini folder like this:**
+## Including AI Generated Images
+Enter your API key into the config.ini file to enable generation of faces.
 ```
 [GeneratedPhotos]
 API_KEY : Enter_Your_API_Here
 ```
 
-## Setup
-1. Clone the repo into the desired location
-```bash
-$ git clone https://github.com/IanUmney/JohnDoe
-```
-2. Change into that directory
-```bash
-$ cd JohnDoe/
-```
-3. Import the _JohnDoe.py_ file into an existing program and call the JohnDoe().create() function
+## List of Keyword Arguments:
+You can pass none or all of the keyword arguments for the `JohnDoe()` object.
 ```python
-from JohnDoe import JohnDoe
-
-jd = JohnDoe().create()
-```
-This will return a dictionary with all the data for the fictional person. 
-```
-name : Benjamin Pastor
-age : 55
-birthday : 09/02/1966
-mobile_number : 
-    number : 07660654789
-    provider : 24 Seven Communications
-address : 
-    house_number : 409
-    street : Church Street
-    area : Wokingham
-    postcode : RG5 3NP
-email : Benjamin.Pastor@yahoo.co.uk
-ip_address : 130.32.142.49
-ni_number : AB812065R
-bank_card : 
-    card_number : 5573574826858015
-    provider : Mastercard
-    expiry_date : 5/25
-    cvv : 309
-driving_license : pasto60209699IN 30
+JohnDoe(name="Ian Thomas Umney") # String. Should include forename and surname at a minimum
+JohnDoe(age=27) # Integer > 0
+JohnDoe(mobile_number="07123123123") # String
+JohnDoe(email="iantumney@gmail.com") # String
+JohnDoe(ni_number="AA123456B") # String
 ```
 
-You can pass `**kwargs` to the JohnDoe class to specify particular variables.
-```python
-jd = JohnDoe(name="Mike Smith", age=37).create()
-```
+### Example Results
 
+**Mike Smith**
 ```
 name : Mike Smith
 age : 22
@@ -117,6 +142,60 @@ bank_card
 driving_license : smith90521999BJ 20
 image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
 ```
-### Example AI generated image
 ![Example AI generated image](https://github.com/IanUmney/JohnDoe/blob/main/src/images/Mike%20Smith_portrait.jpg?raw=true)
 
+
+**Jack Peterson**
+```
+nationality : GB
+name : Jack Peterson
+age : 44
+birthday : 17/06/1977
+mobile_number
+    number : 07537625268
+    provider : Sound Advertising
+address
+    house_number : 265
+    street : South Street
+    area : Basingstoke and Deane
+    postcode : RG21 3LQ
+email : Jack.Peterson@gmail.co.uk
+ip_address : 45.75.140.218
+ni_number : UA718154E
+bank_card
+    card_number : 5573579597246203
+    provider : Mastercard
+    expiry_date : 5/23
+    cvv : 391
+driving_license : peter70617799AC 80
+image : /home/ian/Development/Python/Github/JohnDoe/src/images/Jack Peterson_portrait.jpg
+```
+![Example AI generated image](https://github.com/IanUmney/JohnDoe/blob/main/src/images/Jack%20Peterson_portrait.jpg?raw=true)
+
+
+**Mohommed Martin**
+```
+nationality : GB
+name : Mohammed Martin
+age : 54
+birthday : 23/02/1967
+mobile_number
+    number : 07600018185
+    provider : Sound Advertising
+address
+    house_number : 33
+    street : Park Road
+    area : Wirral
+    postcode : CH60 8QJ
+email : Mohammed.Martin@msn.co.uk
+ip_address : 194.183.102.107
+ni_number : UF390955W
+bank_card
+    card_number : 5573579653322277
+    provider : Mastercard
+    expiry_date : 10/28
+    cvv : 631
+driving_license : marti60223799VK 80
+image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mohammed Martin_portrait.jpg
+```
+![Example AI generated image](https://github.com/IanUmney/JohnDoe/blob/main/src/images/Mohammed%20Martin_portrait.jpg?raw=true)
