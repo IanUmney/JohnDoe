@@ -1,3 +1,13 @@
+<p align="center">
+    <a href="https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tar.xz" alt="3.9.5">
+        <img src="https://img.shields.io/badge/Python%20Version-3.9.5-blue"/></a>
+    <a href="https://ubuntu.com/download/desktop/thank-you?version=20.04.2.0&architecture=amd64" alt="Ubuntu">
+        <img src="https://img.shields.io/badge/Tested%20on-Ubunu%2020.04-orange"/></a>
+    </p>
+
+
+
+
 
 # JohnDoe 
 This simple program creates near-realistic fake data for a fictional subject. 
