@@ -273,9 +273,9 @@ class JohnDoe():
 
             # Define reqest age from John Doe's age
             if self.age <= 5:
-                age = infant
+                age = "infant"
             elif self.age <=16:
-                age = child
+                age = "child"
             elif self.age <= 25:
                 age = "young-adult"
             elif self.age <= 50:
