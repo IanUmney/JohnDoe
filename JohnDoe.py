@@ -11,7 +11,7 @@ import os
 class JohnDoe():
 
     def __init__(self, **kwargs):
-        self.gender = kwargs.get("gender", "m")[0].lower()
+        self.gender = kwargs.get("gender", "male")[0].lower()
         self.nationality = kwargs.get("nationality", "GB").lower()
         self.name = kwargs.get("name", self.name())
         self.age = int(kwargs.get("age", self.age()))
@@ -22,8 +22,30 @@ class JohnDoe():
         self.ip_address = self.ip_address()
         self.ni_number = self.ni_number()
         self.bank_card = self.bank_card()
-        self.driving_license = elf.driving_license()
+        self.driving_license = self.driving_license()
         self.image = self.image()
+
+    def _age(self):
+        if self.age <= 16:
+            exit(f"You cannot generate minors. Odep.")
+        else:
+            return self.age
+
+    # Private function to check gender is given correctly
+    def _gender(self):
+        if self.gender == "m":
+            return "male"
+        elif self.gender == "f":
+            return "female"
+        else:
+            exit("Gender must either be 'male' or 'female'! No 'Apache Attack Helicopters'")
+
+    # Private function to check locale exists
+    def _locale(self):
+        if not os.path.isdir(f"./src/{self.nationality}"):
+            exit(f"The {self.nationality} locale has not been added yet.")
+        else:
+            return self.nationality
 
     def create(self):
         '''Return all the JohnDoe object information'''
@@ -146,13 +168,12 @@ class JohnDoe():
 
     def age(self):
         '''Random age'''
-
         return random.randint(18, 65)
 
     def birthday(self):
         '''Random birthday'''
 
-        year = datetime.datetime.now().year - _age()
+        year = datetime.datetime.now().year - self._age()
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
@@ -169,7 +190,7 @@ class JohnDoe():
 
         # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
-        if len(self.name.split(" ")[-1]) < 5:
+        if len(self.name.split(" ")[-1].replace("'","")) < 5:
             a = self.name.split(" ")[-1][:5].lower()
             while len(a) < 5:
                 a += "9"
@@ -182,7 +203,10 @@ class JohnDoe():
 
         # The month of birth (7th character incremented
         # by 5 if driver is female i.e. 51–62 instead of 01–12)
-        c = self.birthday.split("/")[1]
+        if self._gender() == "male":
+            c = self.birthday.split("/")[1]
+        else:
+            c = int(self.birthday.split("/")[1])+5
 
         # The date within the month of birth
         d = self.birthday.split("/")[0]
@@ -193,7 +217,12 @@ class JohnDoe():
 
         # The first two initials of the first names
         # (padded with a 9 if no middle name)
-        f = "9"
+        if len(self.name.split(" ")) >= 3:
+            f_a = self.name.split(" ")[0][0]
+            f_b = self.name.split(" ")[1][0]
+            f = f_a + f_b
+        else:
+            f = "9"
 
         # Arbitrary digit – usually 9, but decremented to
         # differentiate drivers with the first 13 characters in common
@@ -206,7 +235,7 @@ class JohnDoe():
         # by 1 for each licence issued
         i = f"{random.randint(1,9)}0"
 
-        return "{}{}{}{}{}{}{}{} {}".format(a, b, c, d, e, f, g, h, i)
+        return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
 
     def email(self):
         '''Random email based on name of John Doe'''
@@ -267,16 +296,15 @@ class JohnDoe():
 
         # Get API key from confif file
         api_key = config["GeneratedPhotos"]["API_KEY"]
-        print(api_key)
 
         if api_key != "":
             # Set header for request
             HEADER = {"Authorization": f"API-key {api_key}"}
 
             # Define reqest age from John Doe's age
-            if _age() <= 25:
+            if self._age() <= 25:
                 age = "young-adult"
-            elif _age() <= 50:
+            elif self._age() <= 50:
                 age = "adult"
             else:
                 age = "elderly"
@@ -289,12 +317,12 @@ class JohnDoe():
             # Look for male result in json response
             try: 
                 for x in jsonr["faces"]:
-                    if _gender() == "male":
+                    if self._gender() == "male":
                         if x["meta"]["gender"][0] == "male":
                             # Get 512x512 image URL
                             image_url = x["urls"][-1]["512"]
                             break
-                    elif _gender() == "female":
+                    elif self._gender() == "female":
                         if x["meta"]["gender"][0] == "female":
                             # Get 512x512 image URL
                             image_url = x["urls"][-1]["512"]
