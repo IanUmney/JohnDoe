@@ -151,7 +151,7 @@ class JohnDoe():
     def birthday(self):
         '''Random birthday'''
 
-        year = datetime.datetime.now().year - self.age
+        year = datetime.datetime.now().year - _age()
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
@@ -273,13 +273,9 @@ class JohnDoe():
             HEADER = {"Authorization": f"API-key {api_key}"}
 
             # Define reqest age from John Doe's age
-            if self.age <= 5:
-                age = "infant"
-            elif self.age <=16:
-                age = "child"
-            elif self.age <= 25:
+            if _age() <= 25:
                 age = "young-adult"
-            elif self.age <= 50:
+            elif _age() <= 50:
                 age = "adult"
             else:
                 age = "elderly"
