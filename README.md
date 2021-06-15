@@ -5,10 +5,6 @@
         <img src="https://img.shields.io/badge/Tested%20on-Ubunu%2020.04-orange"/></a>
     </p>
 
-
-
-
-
 # JohnDoe 
 This simple program creates near-realistic fake data for a fictional subject. 
 
