@@ -11,6 +11,7 @@ import os
 class JohnDoe():
 
     def __init__(self, **kwargs):
+        self.nationality = kwargs.get("nationality", "GB").upper()
         self.name = kwargs.get("name", self.name())
         self.age = kwargs.get("age", self.age())
         self.birthday = kwargs.get("birthday", self.birthday()) 
@@ -24,6 +25,7 @@ class JohnDoe():
         self.image = self.image()
 
     def create(self):
+        '''Return all the JohnDoe object information'''
         self_dict = self.__dict__
         for x in self_dict:
             if type(self_dict[x]) == dict:
@@ -37,7 +39,7 @@ class JohnDoe():
         '''Get a random phone number in UK format using 
         genuine prefixes and providers'''
 
-        with open("./src/mobile_numbers.txt","r") as file:
+        with open(f"./src/{self.nationality}/mobile_numbers.txt","r") as file:
             # Get random line from number file
             random_line = random.choice(file.readlines())
 
@@ -74,13 +76,13 @@ class JohnDoe():
         house_number = random.randint(1, 500)
 
         # Get random street name
-        with open("./src/streets.txt", "r") as street_file:
+        with open(f"./src/{self.nationality}/streets.txt", "r") as street_file:
             line = street_file.readlines()
             random_line = random.choice(line)
             street = random_line.strip()
 
         # Get random postcode and area
-        with open("./src/postcodes.txt") as file:
+        with open(f"./src/{self.nationality}/postcodes.txt") as file:
             line = file.readlines()
             random_line = random.choice(line)
 
@@ -100,12 +102,12 @@ class JohnDoe():
         and surnames in the UK'''
 
         # Get random forename
-        with open("./src/forenames.txt") as forename_file:
+        with open(f"./src/{self.nationality}/male.txt") as forename_file:
             line = forename_file.readlines()
             random_name = random.choice(line).strip()
 
         # Get random surname
-        with open("./src/surnames.txt") as surname_file:
+        with open(f"./src/{self.nationality}/surnames.txt") as surname_file:
             rl = surname_file.readlines()
             random_surname = random.choice(rl).strip()
 
@@ -116,7 +118,7 @@ class JohnDoe():
         Generate random 10 numbers to complete card.'''
 
         # Get genuine card number and provider
-        with open("./src/cards.txt", "r") as file:
+        with open(f"./src/{self.nationality}/cards.txt", "r") as file:
             rl = file.readlines()
             for x in rl:
                 number = x.split(" ")[0].strip()
@@ -223,7 +225,7 @@ class JohnDoe():
         of genuine UK IP address blocks.'''
 
         # Get random line from IP csv file
-        with open('./src/ip_address.csv') as f:
+        with open(f"./src/{self.nationality}/ip_address.csv") as f:
             ip_range = next(f)
             for num, aline in enumerate(f, 2):
                 if random.randrange(num):
