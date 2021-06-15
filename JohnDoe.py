@@ -11,7 +11,8 @@ import os
 class JohnDoe():
 
     def __init__(self, **kwargs):
-        self.nationality = kwargs.get("nationality", "GB").upper()
+        self.gender = kwargs.get("gender", "m")[0].lower()
+        self.nationality = kwargs.get("nationality", "GB").lower()
         self.name = kwargs.get("name", self.name())
         self.age = int(kwargs.get("age", self.age()))
         self.birthday = self.birthday()
