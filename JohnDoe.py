@@ -135,7 +135,8 @@ class JohnDoe():
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        bank_card = {"card_number": number,
+        bank_card = {"card_number": 
+                        f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
                     "provider": provider,
                     "expiry_date": expiry_date,
                     "cvv": cvv
