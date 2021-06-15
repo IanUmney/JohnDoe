@@ -292,10 +292,17 @@ class JohnDoe():
             # Look for male result in json response
             try: 
                 for x in jsonr["faces"]:
-                    if x["meta"]["gender"][0] == "male":
-                        # Get 512x512 image URL
-                        image_url = x["urls"][-1]["512"]
-                        break
+                    if _gender() == "male":
+                        if x["meta"]["gender"][0] == "male":
+                            # Get 512x512 image URL
+                            image_url = x["urls"][-1]["512"]
+                            break
+                    elif _gender() == "female":
+                        if x["meta"]["gender"][0] == "female":
+                            # Get 512x512 image URL
+                            image_url = x["urls"][-1]["512"]
+                            break
+
             except Exception as e:
                 print("Cannot get AI image at this time. Try again later", e)
             else:
