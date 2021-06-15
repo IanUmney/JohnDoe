@@ -13,8 +13,8 @@ class JohnDoe():
     def __init__(self, **kwargs):
         self.nationality = kwargs.get("nationality", "GB").upper()
         self.name = kwargs.get("name", self.name())
-        self.age = kwargs.get("age", self.age())
-        self.birthday = kwargs.get("birthday", self.birthday()) 
+        self.age = int(kwargs.get("age", self.age()))
+        self.birthday = self.birthday()
         self.mobile_number = kwargs.get("mobile_number", self.mobile_number())
         self.address = kwargs.get("address", self.address())
         self.email = kwargs.get("email", self.email())
