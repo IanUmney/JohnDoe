@@ -115,11 +115,13 @@ API_KEY : Enter_Your_API_Here
 ## List of Keyword Arguments:
 You can pass none or all of the keyword arguments for the `JohnDoe()` object.
 ```python
-JohnDoe(name="Ian Thomas Umney") # String. Should include forename and surname at a minimum
-JohnDoe(age=27) # Integer > 0
-JohnDoe(mobile_number="07123123123") # String
-JohnDoe(email="iantumney@gmail.com") # String
-JohnDoe(ni_number="AA123456B") # String
+JohnDoe(name="Ian Thomas Umney", age=27, nationality="gb", gender="male") 
+"""
+name ---------- -> ---- String. Should include forename and surname at a minimum
+age ----------- -> ---- Integer > 0
+nationality --- -> ---- String. gb = Great Britain. de = Germany. Etc.
+gender -------- -> ---- String. "male" / "m" or "female" / "f"
+"""
 ```
 
 ### Example Results
