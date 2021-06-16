@@ -55,7 +55,7 @@ address
     postcode : SA61 1YG
 email : Mike.Smith@hotmail.co.uk
 ip_address : 213.253.175.72
-ni_number : FC812154X
+social_security : FC812154X
 bank_card
     card_number : 5573576189231788
     provider : Mastercard
@@ -141,7 +141,7 @@ address
     postcode : SA61 1YG
 email : Mike.Smith@hotmail.co.uk
 ip_address : 213.253.175.72
-ni_number : FC812154X
+social_security : FC812154X
 bank_card
     card_number : 5573576189231788
     provider : Mastercard
@@ -169,7 +169,7 @@ address
     postcode : RG21 3LQ
 email : Jack.Peterson@gmail.co.uk
 ip_address : 45.75.140.218
-ni_number : UA718154E
+social_security : UA718154E
 bank_card
     card_number : 5573579597246203
     provider : Mastercard
@@ -197,7 +197,7 @@ address
     postcode : CH60 8QJ
 email : Mohammed.Martin@msn.co.uk
 ip_address : 194.183.102.107
-ni_number : UF390955W
+social_security : UF390955W
 bank_card
     card_number : 5573579653322277
     provider : Mastercard
