@@ -89,8 +89,7 @@ class JohnDoe():
             number: AB123456C'''
 
             # random ascii char
-            def rac():
-                return random.choice(string.ascii_uppercase)
+            rac = lambda: random.choice(string.ascii_uppercase)
 
             return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
 
