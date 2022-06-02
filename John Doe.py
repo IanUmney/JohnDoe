@@ -1,3 +1,12 @@
+"""
+Program Name: JohnDoe
+Version: 2.0
+Author: Ian Umney
+License: MIT
+"""
+
+
+
 import random
 import string
 import datetime
@@ -7,14 +16,15 @@ import json
 import urllib.request
 import os
 
-
-class JohnDoe():
+class JohnDoe:
 
     def __init__(self, **kwargs):
+        # todo change gender to random generation todo add more genders
         self.gender = kwargs.get("gender", "male")[0].lower()
         self.nationality = kwargs.get("nationality", "GB").lower()
         self.name = kwargs.get("name", self.name())
         self.age = int(kwargs.get("age", self.age()))
+
         self.birthday = self.birthday()
         self.mobile_number = self.mobile_number()
         self.address = self.address()
@@ -26,7 +36,7 @@ class JohnDoe():
         self.image = self.image()
 
     def _age(self):
-        if self.age <= 16:
+        if self.age <= 18:
             exit(f"You cannot generate minors. Odep.")
         else:
             return self.age
@@ -38,7 +48,7 @@ class JohnDoe():
         elif self.gender == "f":
             return "female"
         else:
-            exit("Gender must either be 'male' or 'female'! No 'Apache Attack Helicopters'")
+            exit("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
 
     # Private function to check locale exists
     def _locale(self):
@@ -124,7 +134,6 @@ class JohnDoe():
         elif self.nationality == "de":
             return de()
 
-        
     def address(self):
         '''Get random UK adrress information.
         Postcode and area are genuine.
@@ -183,7 +192,7 @@ class JohnDoe():
                 provider = x.split(" ")[1].strip()
 
         # Concatonate random 10-digit number to complete card
-        number = number + str(random.randint(0000_0000_00, 9999_9999_99))
+        number = number + str(random.randint(0o000_0000_00, 9999_9999_99))
 
         # Random expiry date
         expiry_date = str(random.randint(1, 12)) + \
@@ -207,7 +216,7 @@ class JohnDoe():
 
     def birthday(self):
         '''Random birthday'''
-
+        # ensures that age is calculated from previous date
         year = datetime.datetime.now().year - self._age()
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
@@ -227,7 +236,7 @@ class JohnDoe():
 
             # The first five characters of the surname
             # (padded with 9s if less than 5 characters)
-            if len(self.name.split(" ")[-1].replace("'","")) < 5:
+            if len(self.name.split(" ")[-1].replace("","")) < 5:
                 a = self.name.split(" ")[-1][:5].lower()
                 while len(a) < 5:
                     a += "9"
@@ -275,14 +284,14 @@ class JohnDoe():
             return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
 
         elif self.nationality == "de":
-            return random.randint(000_000_0, 999_999_9)
+            return random.randint(0o00_000_0, 999_999_9)
         else:
             exit()
 
     def email(self):
         '''Random email based on name of John Doe'''
 
-        # Email providers with UK TLD
+        # Email providers with
         providers = ["yahoo.com", "gmail.com", "live.com",
                     "hotmail.com", "icloud.com", "msn.com"
                     ]
@@ -381,5 +390,6 @@ class JohnDoe():
                 else:
                     print("no image url")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     JohnDoe().create()
