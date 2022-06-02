@@ -5,8 +5,6 @@ Author: Ian Umney
 License: MIT
 """
 
-
-
 import random
 import string
 import datetime
@@ -15,11 +13,13 @@ import requests
 import json
 import urllib.request
 import os
+import logging
+
 
 class JohnDoe:
 
     def __init__(self, **kwargs):
-        # todo change gender to random generation todo add more genders
+        # todo change gender to random generation
         self.gender = kwargs.get("gender", "male")[0].lower()
         self.nationality = kwargs.get("nationality", "GB").lower()
         self.name = kwargs.get("name", self.name())
@@ -37,6 +37,7 @@ class JohnDoe:
 
     def _age(self):
         if self.age <= 18:
+            logging.warning("You cannot generate underage people.")
             exit(f"You cannot generate minors. Odep.")
         else:
             return self.age
@@ -48,11 +49,13 @@ class JohnDoe:
         elif self.gender == "f":
             return "female"
         else:
+            logging.warning("Gender must be binary - Male or Female")
             exit("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
 
     # Private function to check locale exists
     def _locale(self):
         if not os.path.isdir(f"./src/{self.nationality}"):
+            logging.error(f"There is no {self.nationality} file found. It's either missing or nonexistent")
             exit(f"The {self.nationality} locale has not been added yet.")
         else:
             return self.nationality
@@ -380,6 +383,7 @@ class JohnDoe:
                             break
 
             except Exception as e:
+                logging.error("Cannot connect to AI image server at this time.")
                 print("Cannot get AI image at this time. Try again later", e)
             else:
                 if image_url != "":
@@ -391,5 +395,11 @@ class JohnDoe:
                     print("no image url")
 
 
-if __name__ == "__main__":
+def main():
+    logging.basicConfig(filename="event.log", format="%(asctime)s %(levelname)s : %(message)s", level=logging.INFO)
+
     JohnDoe().create()
+
+
+if __name__ == "__main__":
+    main()
