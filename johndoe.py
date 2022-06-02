@@ -17,7 +17,6 @@ import logging
 
 
 class JohnDoe:
-
     def __init__(self, **kwargs):
         ran = random.randint(1, 99)
         if ran % 2 != 0:
@@ -79,7 +78,7 @@ class JohnDoe:
         """Get a random phone number in UK format using
         genuine prefixes and providers"""
 
-        with open(f"./src/{self._locale()}/mobile_numbers.txt","r") as file:
+        with open(f"./src/{self._locale()}/mobile_numbers.txt", "r") as file:
             # Get random line from number file
             random_line = random.choice(file.readlines())
 
@@ -93,56 +92,22 @@ class JohnDoe:
             # Get provider associated with number prefix
             provider = " ".join(random_line.strip().split(" ")[1:])
 
-            return {"number": number, 
+            return {"number": number,
                     "provider": provider
                     }
 
     def social_security(self):
         """Create a social security number """
 
-        # Great Britain
-        def gb():
-            """Gets string with the format of a national insurance
-            number: AB123456C"""
+        """Gets string with the format of a national insurance
+        number: AB123456C"""
+        # random ascii char
+        rac = lambda: random.choice(string.ascii_uppercase)
 
-            # random ascii char
-            rac = lambda: random.choice(string.ascii_uppercase)
-
-            return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
-
-        # Germany
-        def de():
-            # 1-2: Area number of the pension insurance agency
-            a = random.randint(0,15)
-
-            # 3-8: Your date of birth
-            b = "".join(self.birthday.split("/"))
-
-            # 9: First letter of your birth name
-            c = self.name[0]
-
-            # 10-11: Serial number (00-49 = male; 50-99 = female)
-            if self.gender == "m":
-                d = random.randint(0, 49)
-                if d < 10:
-                    d = f"0{d}"
-            elif self.gender == "f":
-                d = random.randint(50, 99)
-            else:
-                exit()
-
-            # 12: Check digit
-            e = random.randint(1,9)
-
-            return "{}{}{}{}{}".format(a, b, c, d, e)
-
-        if self.nationality == "gb":
-            return gb()
-        elif self.nationality == "de":
-            return de()
+        return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
 
     def address(self):
-        """Get random UK adrress information.
+        """Get random UK address information.
         Postcode and area are genuine.
         Street names are random choice from top 50"""
 
@@ -164,11 +129,10 @@ class JohnDoe:
             area = random_line.strip().split(",")[1]
 
         address = {"house_number": house_number,
-                    "street": street,
-                    "area": area,
-                    "postcode": postcode
-                    }
-
+                   "street": street,
+                   "area": area,
+                   "postcode": postcode
+                   }
         return address
 
     def name(self):
@@ -197,24 +161,18 @@ class JohnDoe:
             for x in rl:
                 number = x.split(" ")[0].strip()
                 provider = x.split(" ")[1].strip()
-
-        # Concatonate random 10-digit number to complete card
+        # Concatenate random 10-digit number to complete card
         number = number + str(random.randint(0o000_0000_00, 9999_9999_99))
-
         # Random expiry date
-        expiry_date = str(random.randint(1, 12)) + \
-            "/" + str(random.randint(22, 32))
-
+        expiry_date = str(random.randint(1, 12)) + "/" + str(random.randint(22, 32))
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        bank_card = {"card_number": 
-                        f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
-                    "provider": provider,
-                    "expiry_date": expiry_date,
-                    "cvv": cvv
-                    }
-
+        bank_card = {"card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
+                     "provider": provider,
+                     "expiry_date": expiry_date,
+                     "cvv": cvv
+                     }
         return bank_card
 
     def age(self):
@@ -237,71 +195,62 @@ class JohnDoe:
         return f"{day}/{month}/{year}"
 
     def driving_license(self):
+        """Driving license according to UK format, for John Doe\'s details"""
 
-        if self.nationality == "gb":
-            """Driving license according to UK format, for John Doe\'s details"""
-
-            # The first five characters of the surname
-            # (padded with 9s if less than 5 characters)
-            if len(self.name.split(" ")[-1].replace("","")) < 5:
-                a = self.name.split(" ")[-1][:5].lower()
-                while len(a) < 5:
-                    a += "9"
-            else:
-                a = self.name.split(" ")[-1][:5].lower()
-
-            # The decade digit from the year of birth
-            # (e.g. for 1987 it would be 8)
-            b = self.birthday.split("/")[2][2]
-
-            # The month of birth (7th character incremented
-            # by 5 if driver is female i.e. 51–62 instead of 01–12)
-            if self._gender() == "male":
-                c = self.birthday.split("/")[1]
-            else:
-                c = int(self.birthday.split("/")[1])+5
-
-            # The date within the month of birth
-            d = self.birthday.split("/")[0]
-
-            # The year digit from the year of birth
-            # (e.g. for 1987 it would be 7)
-            e = self.birthday.split("/")[2][3]
-
-            # The first two initials of the first names
-            # (padded with a 9 if no middle name)
-            if len(self.name.split(" ")) >= 3:
-                f_a = self.name.split(" ")[0][0]
-                f_b = self.name.split(" ")[1][0]
-                f = f_a + f_b
-            else:
-                f = "9"
-
-            # Arbitrary digit – usually 9, but decremented to
-            # differentiate drivers with the first 13 characters in common
-            g = "9"
-
-            # Two random computer check digits
-            h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
-
-            # Appended, two digits representing the licence issue, which increases
-            # by 1 for each licence issued
-            i = f"{random.randint(1,9)}0"
-
-            return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
-
-        elif self.nationality == "de":
-            return random.randint(0o00_000_0, 999_999_9)
+        # The first five characters of the surname
+        # (padded with 9s if less than 5 characters)
+        if len(self.name.split(" ")[-1].replace("","")) < 5:
+            a = self.name.split(" ")[-1][:5].lower()
+            while len(a) < 5:
+                a += "9"
         else:
-            exit()
+            a = self.name.split(" ")[-1][:5].lower()
+
+        # The decade digit from the year of birth
+        # (e.g. for 1987 it would be 8)
+        b = self.birthday.split("/")[2][2]
+
+        # The month of birth (7th character incremented
+        # by 5 if driver is female i.e. 51–62 instead of 01–12)
+        if self._gender() == "male":
+            c = self.birthday.split("/")[1]
+        else:
+            c = int(self.birthday.split("/")[1])+5
+
+        # The date within the month of birth
+        d = self.birthday.split("/")[0]
+
+        # The year digit from the year of birth
+        # (e.g. for 1987 it would be 7)
+        e = self.birthday.split("/")[2][3]
+
+        # The first two initials of the first names
+        # (padded with a 9 if no middle name)
+        if len(self.name.split(" ")) >= 3:
+            f_a = self.name.split(" ")[0][0]
+            f_b = self.name.split(" ")[1][0]
+            f = f_a + f_b
+        else:
+            f = "9"
+
+        # Arbitrary digit – usually 9, but decremented to
+        # differentiate drivers with the first 13 characters in common
+        g = random.randint(1, 9)
+
+        # Two random computer check digits
+        h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
+
+        # Appended, two digits representing the licence issue, which increases
+        # by 1 for each licence issued
+        i = f"{random.randint(1,9)}0"
+
+        return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
 
     def email(self):
         """Random email based on name of John Doe"""
 
         # Email providers with
-        providers = ["yahoo.com", "gmail.com", "live.com",
-                    "hotmail.com", "icloud.com", "msn.com"
-                    ]
+        providers = ["yahoo.co.uk", "gmail.co.uk", "live.co.uk", "hotmail.co.uk", "icloud.co.uk", "msn.co.uk"]
 
         provider = random.choice(providers)
 
@@ -352,14 +301,14 @@ class JohnDoe:
         config = configparser.ConfigParser()
         config.read(os.path.join(full_path, 'config.ini'))
 
-        # Get API key from confif file
+        # Get API key from config file
         api_key = config["GeneratedPhotos"]["API_KEY"]
 
         if api_key != "":
             # Set header for request
             HEADER = {"Authorization": f"API-key {api_key}"}
 
-            # Define reqest age from John Doe's age
+            # Define request age from John Doe's age
             if self._age() <= 25:
                 age = "young-adult"
             elif self._age() <= 50:
@@ -373,7 +322,7 @@ class JohnDoe:
             jsonr = json.loads(r.text)
 
             # Look for male result in json response
-            try: 
+            try:
                 for x in jsonr["faces"]:
                     if self._gender() == "male":
                         if x["meta"]["gender"][0] == "male":
@@ -397,6 +346,8 @@ class JohnDoe:
                     return location
                 else:
                     print("no image url")
+        else:
+            logging.info("No AI image API was supplied - Skipping face generation")
 
 
 def main():
