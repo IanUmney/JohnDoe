@@ -19,8 +19,13 @@ import logging
 class JohnDoe:
 
     def __init__(self, **kwargs):
-        # todo change gender to random generation
-        self.gender = kwargs.get("gender", "male")[0].lower()
+        ran = random.randint(1, 99)
+        if ran % 2 != 0:
+            default_gender = "female"
+        else:
+            default_gender = "male"
+        self.gender = kwargs.get("gender", default_gender)[0].lower()
+
         self.nationality = kwargs.get("nationality", "GB").lower()
         self.name = kwargs.get("name", self.name())
         self.age = int(kwargs.get("age", self.age()))
