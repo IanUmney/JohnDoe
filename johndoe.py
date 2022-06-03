@@ -52,8 +52,8 @@ class JohnDoe:
         elif self.gender == "f":
             return "female"
         else:
-            logging.warning("Gender must be binary - Male or Female")
-            exit("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
+            logging.warning("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
+            exit("Gender must be binary - Male or Female. This is for the imaging AI.")
 
     # Private function to check locale exists
     def _locale(self):
