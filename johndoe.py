@@ -3,8 +3,27 @@ Program Name: JohnDoe
 Version: 2.0
 Author: Ian Umney
 License: MIT
-"""
 
+This application was written with the aim of being used
+in testing environments which require sensitive personally
+identifiable information (PII) of a UK British subject.
+
+Release version 2.0 contains the following updates:
+    + todo Refactor package name to "JohnDoePII"
+    + todo GUI for better UX
+    + todo Dynamically change JohnDoe's information
+
+=======================================
+("Planned updates for future releases")
+Release version 2.1:
+    + Webapp
+    + API access (token)
+Release version 2.2:
+    + AI/ML integration for deeper UX
+
+"""
+##################
+# !/usr/bin/python3
 import random
 import string
 import datetime
