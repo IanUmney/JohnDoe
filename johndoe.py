@@ -3,8 +3,27 @@ Program Name: JohnDoe
 Version: 2.0
 Author: Ian Umney
 License: MIT
-"""
 
+This application was written with the aim of being used
+in testing environments which require sensitive personally
+identifiable information (PII) of a UK British subject.
+
+Release version 2.0 contains the following updates:
+    + todo Refactor package name to "JohnDoePII"
+    + todo GUI for better UX
+    + todo Dynamically change JohnDoe's information
+
+=======================================
+("Planned updates for future releases")
+Release version 2.1:
+    + Webapp
+    + API access (token)
+Release version 2.2:
+    + AI/ML integration for deeper UX
+
+"""
+##################
+# !/usr/bin/python3
 import random
 import string
 import datetime
@@ -17,28 +36,31 @@ import logging
 
 
 class JohnDoe:
+    """Main object of any generated character."""
     def __init__(self, **kwargs):
+        """Called when instantiated"""
+        # Assigning gender by modulo = default
         ran = random.randint(1, 99)
         if ran % 2 != 0:
             default_gender = "female"
         else:
             default_gender = "male"
-        self.gender = kwargs.get("gender", default_gender)[0].lower()
+        self.gender = kwargs.get("gender", default_gender)[0].lower() # User input optional. Expected "male" / "female"
+        self.name = kwargs.get("name", self.name()) # User input optional. Expected any input. todo check input throttle
+        self.age = int(kwargs.get("age", self.age())) # User input optional. Expected any age > 18.
 
-        self.nationality = kwargs.get("nationality", "gb").lower()
-        self.name = kwargs.get("name", self.name())
-        self.age = int(kwargs.get("age", self.age()))
-        self.birthday = self.birthday()
-        self.mobile_number = self.mobile_number()
-        self.address = self.address()
-        self.email = self.email()
-        self.ip_address = self.ip_address()
-        self.social_security = self.social_security()
-        self.bank_card = self.bank_card()
-        self.driving_license = self.driving_license()
-        self.image = self.image()
+        self.email = self.email() # Firstname.Lastname@(random popular email provider).co.uk
+        self.image = self.image() # AI image based on JohnDoe (if API Token provided).
+        self.address = self.address() # Random address with real postcode and area but fake number and street.
+        self.birthday = self.birthday() # Calculated randomly.
+        self.bank_card = self.bank_card() # Real first 4 digits and provider. Fake 12 digits, cvv, and expiry.
+        self.ip_address = self.ip_address() # Real IP blocks and providers and locations. Random ip addresses.
+        self.mobile_number = self.mobile_number() # Real first digits and providers, random remaining numbers.
+        self.social_security = self.social_security() # Random based on AB123456D format.
+        self.driving_license = self.driving_license() # DVLA format based on JohnDoe
 
     def _age(self):
+        """Checks if user input is trying to generate underaged useers"""
         if self.age <= 18:
             logging.warning("You cannot generate underage people.")
             exit(f"You cannot generate minors. Odep.")
@@ -55,15 +77,8 @@ class JohnDoe:
             logging.warning("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
             exit("Gender must be binary - Male or Female. This is for the imaging AI.")
 
-    # Private function to check locale exists
-    def _locale(self):
-        if not os.path.isdir(f"./src/{self.nationality}"):
-            logging.error(f"There is no {self.nationality} file found. It's either missing or nonexistent")
-            exit(f"The {self.nationality} locale has not been added yet.")
-        else:
-            return self.nationality
-
     def create(self):
+        # todo return UX object
         """Return all the JohnDoe object information"""
         self_dict = self.__dict__
         for x in self_dict:
@@ -78,7 +93,7 @@ class JohnDoe:
         """Get a random phone number in UK format using
         genuine prefixes and providers"""
 
-        with open(f"./src/{self._locale()}/mobile_numbers.txt", "r") as file:
+        with open(f"./src/gb/mobile_numbers.txt", "r") as file:
             # Get random line from number file
             random_line = random.choice(file.readlines())
 
@@ -115,13 +130,13 @@ class JohnDoe:
         house_number = random.randint(1, 500)
 
         # Get random street name
-        with open(f"./src/{self._locale()}/streets.txt", "r") as street_file:
+        with open(f"./src/gb/streets.txt", "r") as street_file:
             line = street_file.readlines()
             random_line = random.choice(line)
             street = random_line.strip()
 
         # Get random postcode and area
-        with open(f"./src/{self._locale()}/postcodes.txt") as file:
+        with open(f"./src/gb/postcodes.txt") as file:
             line = file.readlines()
             random_line = random.choice(line)
 
@@ -134,18 +149,19 @@ class JohnDoe:
                    "postcode": postcode
                    }
         return address
+        # todo make address object
 
     def name(self):
         """Get a random name from the most common forenames
         and surnames in the UK"""
 
         # Get random forename
-        with open(f"./src/{self._locale()}/{self._gender()}.txt") as forename_file:
+        with open(f"./src/gb/{self._gender()}.txt") as forename_file:
             line = forename_file.readlines()
             random_name = random.choice(line).strip()
 
         # Get random surname
-        with open(f"./src/{self._locale()}/surnames.txt") as surname_file:
+        with open(f"./src/gb/surnames.txt") as surname_file:
             rl = surname_file.readlines()
             random_surname = random.choice(rl).strip()
 
@@ -156,7 +172,7 @@ class JohnDoe:
         Generate random 10 numbers to complete card."""
 
         # Get genuine card number and provider
-        with open(f"./src/{self._locale()}/cards.txt", "r") as file:
+        with open(f"./src/gb/cards.txt", "r") as file:
             rl = file.readlines()
             for x in rl:
                 number = x.split(" ")[0].strip()
@@ -173,11 +189,11 @@ class JohnDoe:
                      "expiry_date": expiry_date,
                      "cvv": cvv
                      }
-        return bank_card
+        return bank_card # todo make bank card object
 
     def age(self):
         """Random age"""
-        return random.randint(18, 65)
+        return random.randint(18, 99)
 
     def birthday(self):
         """Random birthday"""
@@ -263,7 +279,7 @@ class JohnDoe:
         of genuine UK IP address blocks."""
 
         # Get random line from IP csv file
-        with open(f"./src/{self._locale()}/ip_address.csv") as f:
+        with open(f"./src/gb/ip_address.csv") as f:
             ip_range = next(f)
             for num, aline in enumerate(f, 2):
                 if random.randrange(num):
