@@ -177,7 +177,7 @@ class JohnDoe:
 
     def age(self):
         """Random age"""
-        return random.randint(18, 65)
+        return random.randint(18, 99)
 
     def birthday(self):
         """Random birthday"""
