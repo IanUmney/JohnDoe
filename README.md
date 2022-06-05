@@ -109,18 +109,17 @@ image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portra
 Enter your API key into the config.ini file to enable generation of faces.
 ```
 [GeneratedPhotos]
-API_KEY : Enter_Your_API_Here
+API_KEY : Enter_Your_API_Here   
 ```
 
 ## List of Keyword Arguments:
 You can pass none or all of the keyword arguments for the `JohnDoe()` object.
 ```python
-JohnDoe(name="Ian Thomas Umney", age=27, nationality="gb", gender="male") 
+JohnDoe(name="Jane Doe", age=33, nationality="gb", gender="female") 
 """
 name ---------- -> ---- String. Should include forename and surname at a minimum
-age ----------- -> ---- Integer > 0
-nationality --- -> ---- String. gb = Great Britain. de = Germany. Etc.
-gender -------- -> ---- String. "male" / "m" or "female" / "f"
+age ----------- -> ---- Integer > 18
+gender -------- -> ---- String. "male" or "female"
 """
 ```
 
