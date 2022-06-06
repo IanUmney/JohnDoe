@@ -97,7 +97,10 @@ class JohnDoe:
             else:
                 self.age = kwargs.get("age")  # Set age to kwargs
         elif args.age:  # If age in kwargs
-            self.age = args.age   # Set age to args.age
+            if args.age < 18:
+                exit("You cannot generate minors. Weirdo")
+            else:
+                self.age = args.age   # Set age to args.age
         else:
             self.age = random.randint(18, 99)  # Set age to random number
         return self.age
