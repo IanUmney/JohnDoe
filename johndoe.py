@@ -37,7 +37,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", help="Name to use", type=str)
-parser.add_argument("--age", help="Age to use", type=int)
+parser.add_argument("--age", help="Age to use", type=int, metavar="{18..99}")
 parser.add_argument("--gender", help="Gender to use", type=str, choices=["male", "female"])
 parser.add_argument("-p", "--pdf", help="Print results to PDF page", action="store_true")
 parser.add_argument("-v", "--verbose", help="Print results to command line", action="store_true")
