@@ -116,7 +116,14 @@ class JohnDoe:
             number = random_line.split(" ")[0] # Get random number prefix
             while len(number) < 11: # While phone number length is less than 11
                 number += str(random.randint(0, 9)) # Keep appending random numbers
-        return {"number": number, "provider": provider}
+
+        # def number():
+        #     return self.mobile_number["number"]
+        #
+        # def provider():
+        #     return self.mobile_number["provider"]
+
+        return f"{number}, {provider}"
 
     def social_security(self):
         """Gets string with the format of a national insurance
@@ -146,13 +153,8 @@ class JohnDoe:
             postcode = random_line.strip().split(",")[0]
             area = random_line.strip().split(",")[1]
 
-        address = {"house_number": house_number,
-                   "street": street,
-                   "area": area,
-                   "postcode": postcode
-                   }
+        address = f"{house_number} {street}, {area}, {postcode}"
         return address
-        # todo make address object
 
     def bank_card(self):
         """Get genuine UK bank card information provider.
@@ -171,11 +173,7 @@ class JohnDoe:
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        bank_card = {"card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
-                     "provider": provider,
-                     "expiry_date": expiry_date,
-                     "cvv": cvv
-                     }
+        bank_card = f"{number}, {cvv}, {expiry_date}, {provider}"
         return bank_card # todo make bank card object
 
     def birthday(self):
