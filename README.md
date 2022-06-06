@@ -21,48 +21,39 @@ $ cd JohnDoe/
 ```
 
 ## Usage
-Call the _JohnDoe.py_ file directly. This will print a dictionary-style output of the information.
+you can import the module into an existing Python program, or you can use the prohram directly from the CLI
+### Command-Line Interface
+Call the _johndoe.py_ file directly. This will print a dictionary-style output of the information.
+```bash2
+python3 johndoe.py -h
+```
+See the help pages for additional support
 ```bash
-python3 JohnDoe.py
+usage: johndoe.py [-h] [--name NAME] [--age {18..99}] [--gender {male,female}] [-p] [-v]
+optional arguments:
+  -h, --help            show this help message and exit
+  --name NAME           Name to use
+  --age {18..99}        Age to use
+  --gender {male,female}
+                        Gender to use
+  -p, --pdf             Print results to PDF page
+  -v, --verbose         Print results to command line
+```
+Example usage:
+```bash
+python3 johndoe.py -v --name "Jane Doe" --age 50 --gender female
 ```
 
 ### Importing the module
-Import the _JohnDoe.py_ file into an existing program and call the .create() function.
+Import the _johndoe.py_ file into an existing program and call the .list() function to print all attributes.
 ```python
-from JohnDoe import JohnDoe
-
-jd = JohnDoe()
-jd.create()
+from johndoe import JohnDoe
+jd = JohnDoe()  # Instantiate the object (with optional kwargs)
+jd.list()  # Print the object attributes
 ```
-
-You can pass `**kwargs` to the JohnDoe object to specify particular variables.
-
+**Keyword Arguments** can be passed to johndoe to specify particular attributes.
 ```python
-jd = JohnDoe(name="Mike Smith", age=22).create()
-```
-**Output from above command**
-```
-name : Mike Smith
-age : 22
-birthday : 21/05/1999
-mobile_number
-    number : 07735167188
-    provider : Three
-address
-    house_number : 257
-    street : Park Road
-    area : Pembrokeshire
-    postcode : SA61 1YG
-email : Mike.Smith@hotmail.co.uk
-ip_address : 213.253.175.72
-social_security : FC812154X
-bank_card
-    card_number : 5573576189231788
-    provider : Mastercard
-    expiry_date : 5/31
-    cvv : 255
-driving_license : smith90521999BJ 20
-image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
+jd = JohnDoe(name="Jane Doesunt", age=69, gender="female")
 ```
 
 ## data:
@@ -109,17 +100,17 @@ image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portra
 Enter your API key into the config.ini file to enable generation of faces.
 ```
 [GeneratedPhotos]
-API_KEY : Enter_Your_API_Here   
+API_KEY : Enter_Your_API_Here
 ```
 
 ## List of Keyword Arguments:
 You can pass none or all of the keyword arguments for the `JohnDoe()` object.
 ```python
-JohnDoe(name="Jane Doe", age=33, nationality="gb", gender="female") 
+JohnDoe(name="Ian Thomas Umney", age=27, nationality="gb", gender="male") 
 """
-name ---------- -> ---- String. Should include forename and surname at a minimum
-age ----------- -> ---- Integer > 18
-gender -------- -> ---- String. "male" or "female"
+name ----- -> --- str  Should include forename and surname
+age ------ -> --- int > 18
+gender --- -> --- str  "male" or "female"
 """
 ```
 
