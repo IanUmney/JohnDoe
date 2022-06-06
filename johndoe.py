@@ -33,92 +33,103 @@ import json
 import urllib.request
 import os
 import logging
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--name", help="Name to use", type=str)
+parser.add_argument("--age", help="Age to use", type=int, metavar="{18..99}")
+parser.add_argument("--gender", help="Gender to use", type=str, choices=["male", "female"])
+parser.add_argument("-p", "--pdf", help="Print results to PDF page", action="store_true")
+parser.add_argument("-v", "--verbose", help="Print results to command line", action="store_true")
+args = parser.parse_args()
 
 class JohnDoe:
     """Main object of any generated character."""
     def __init__(self, **kwargs):
-        """Called when instantiated"""
-        # Assigning gender by modulo = default
-        ran = random.randint(1, 99)
-        if ran % 2 != 0:
-            default_gender = "female"
+        self.gender = self.gender(kwargs)
+        self.name = self.name(kwargs)
+        self.age = self.age(kwargs)
+        self.birthday = self.birthday()
+        self.address = self.address()
+        self.mobile_number = self.mobile_number()
+        self.social_security = self.social_security()
+        self.driving_license = self.driving_license()
+        self.bank_card = self.bank_card()
+        self.ip_address = self.ip_address()
+        self.image = self.image()
+
+    def gender(self, kwargs):
+        """Either accept input gender or randomly assign one"""
+        if kwargs.get("gender"):
+            self.gender = kwargs.get("gender")
+        elif args.gender:
+            self.gender = args.gender
         else:
-            default_gender = "male"
-        self.gender = kwargs.get("gender", default_gender)[0].lower() # User input optional. Expected "male" / "female"
-        self.name = kwargs.get("name", self.name()) # User input optional. Expected any input. todo check input throttle
-        self.age = int(kwargs.get("age", self.age())) # User input optional. Expected any age > 18.
-
-        self.email = self.email() # Firstname.Lastname@(random popular email provider).co.uk
-        self.image = self.image() # AI image based on JohnDoe (if API Token provided).
-        self.address = self.address() # Random address with real postcode and area but fake number and street.
-        self.birthday = self.birthday() # Calculated randomly.
-        self.bank_card = self.bank_card() # Real first 4 digits and provider. Fake 12 digits, cvv, and expiry.
-        self.ip_address = self.ip_address() # Real IP blocks and providers and locations. Random ip addresses.
-        self.mobile_number = self.mobile_number() # Real first digits and providers, random remaining numbers.
-        self.social_security = self.social_security() # Random based on AB123456D format.
-        self.driving_license = self.driving_license() # DVLA format based on JohnDoe
-
-    def _age(self):
-        """Checks if user input is trying to generate underaged useers"""
-        if self.age <= 18:
-            logging.warning("You cannot generate underage people.")
-            exit(f"You cannot generate minors. Odep.")
-        else:
-            return self.age
-
-    # Private function to check gender is given correctly
-    def _gender(self):
-        if self.gender == "m":
-            return "male"
-        elif self.gender == "f":
-            return "female"
-        else:
-            logging.warning("Gender must either be 'male' or 'female' for the AI! No 'Apache Attack Helicopters'")
-            exit("Gender must be binary - Male or Female. This is for the imaging AI.")
-
-    def create(self):
-        # todo return UX object
-        """Return all the JohnDoe object information"""
-        self_dict = self.__dict__
-        for x in self_dict:
-            if type(self_dict[x]) == dict:
-                print(f"{x}")
-                for y in self_dict[x]:
-                    print(f"\t{y} : {self_dict[x][y]}")
+            random_int = random.randint(1, 99)  # Get random number 1..99
+            if random_int % 2 == 0:  # If number/2 is equal
+                random_gender = "female"
             else:
-                print(f"{x} : {self_dict[x]}")
+                random_gender = "male"
+            self.gender = random_gender
+        return self.gender
+
+    def name(self, kwargs):
+        if kwargs.get("name"):
+            self.name = kwargs.get("name")
+        elif args.name:
+            self.name = args.name
+        else:
+            """Get a random name from the most common forenames
+            and surnames in the UK"""
+            with open(f"./src/gb/{self.gender}.txt") as forename_file:  # Get random forename
+                line = forename_file.readlines()
+                random_name = random.choice(line).strip()
+            with open(f"./src/gb/surnames.txt") as surname_file:  # Get random surname
+                rl = surname_file.readlines()
+                random_surname = random.choice(rl).strip()
+            self.name = f"{random_name} {random_surname}"
+        return self.name
+
+    def age(self, kwargs):
+        """Either get the ages from args or kwargs, or generate random age"""
+        if kwargs.get("age"):  # If age in kwargs
+            if kwargs.get("age") < 18:
+                exit("You cannot generate minors. Weirdo")
+            else:
+                self.age = kwargs.get("age")  # Set age to kwargs
+        elif args.age:  # If age in kwargs
+            if args.age < 18:
+                exit("You cannot generate minors. Weirdo")
+            else:
+                self.age = args.age   # Set age to args.age
+        else:
+            self.age = random.randint(18, 99)  # Set age to random number
+        return self.age
 
     def mobile_number(self):
         """Get a random phone number in UK format using
         genuine prefixes and providers"""
-
+        number = None
+        provider = None
         with open(f"./src/gb/mobile_numbers.txt", "r") as file:
-            # Get random line from number file
-            random_line = random.choice(file.readlines())
+            random_line = random.choice(file.readlines()) # Get random line from number file
+            provider = " ".join(random_line.strip().split(" ")[1:])  # Get provider associated with number prefix
+            number = random_line.split(" ")[0] # Get random number prefix
+            while len(number) < 11: # While phone number length is less than 11
+                number += str(random.randint(0, 9)) # Keep appending random numbers
 
-            # Get random number prefix
-            number = random_line.split(" ")[0]
+        # def number():
+        #     return self.mobile_number["number"]
+        #
+        # def provider():
+        #     return self.mobile_number["provider"]
 
-            # Add suffix to genuine number prefix
-            while len(number) < 11:
-                number += str(random.randint(0, 9))
-
-            # Get provider associated with number prefix
-            provider = " ".join(random_line.strip().split(" ")[1:])
-
-            return {"number": number,
-                    "provider": provider
-                    }
+        return f"{number}, {provider}"
 
     def social_security(self):
-        """Create a social security number """
-
         """Gets string with the format of a national insurance
         number: AB123456C"""
-        # random ascii char
-        rac: () = lambda: random.choice(string.ascii_uppercase)
-
+        rac: () = lambda: random.choice(string.ascii_uppercase)  # random ascii char
         return f"{rac()}{rac()}{random.randint(111_111, 999_999)}{rac()}"
 
     def address(self):
@@ -143,29 +154,8 @@ class JohnDoe:
             postcode = random_line.strip().split(",")[0]
             area = random_line.strip().split(",")[1]
 
-        address = {"house_number": house_number,
-                   "street": street,
-                   "area": area,
-                   "postcode": postcode
-                   }
+        address = f"{house_number} {street}, {area}, {postcode}"
         return address
-        # todo make address object
-
-    def name(self):
-        """Get a random name from the most common forenames
-        and surnames in the UK"""
-
-        # Get random forename
-        with open(f"./src/gb/{self._gender()}.txt") as forename_file:
-            line = forename_file.readlines()
-            random_name = random.choice(line).strip()
-
-        # Get random surname
-        with open(f"./src/gb/surnames.txt") as surname_file:
-            rl = surname_file.readlines()
-            random_surname = random.choice(rl).strip()
-
-        return f"{random_name} {random_surname}"
 
     def bank_card(self):
         """Get genuine UK bank card information provider.
@@ -184,21 +174,13 @@ class JohnDoe:
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        bank_card = {"card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
-                     "provider": provider,
-                     "expiry_date": expiry_date,
-                     "cvv": cvv
-                     }
+        bank_card = f"{number}, {cvv}, {expiry_date}, {provider}"
         return bank_card # todo make bank card object
-
-    def age(self):
-        """Random age"""
-        return random.randint(18, 99)
 
     def birthday(self):
         """Random birthday"""
         # ensures that age is calculated from previous date
-        year = datetime.datetime.now().year - self._age()
+        year = datetime.datetime.now().year - self.age
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
@@ -213,54 +195,50 @@ class JohnDoe:
     def driving_license(self):
         """Driving license according to UK format, for John Doe\'s details"""
 
-        # The first five characters of the surname
-        # (padded with 9s if less than 5 characters)
-        if len(self.name.split(" ")[-1].replace("","")) < 5:
-            a = self.name.split(" ")[-1][:5].lower()
-            while len(a) < 5:
-                a += "9"
-        else:
-            a = self.name.split(" ")[-1][:5].lower()
+        # The first five characters of the surname (padded with 9s if less than 5 characters)
+        # surname_length = len(self.name["secondname"])
+        # A = self.name["secondname"][:surname_length]
+        A = self.name.split(" ")[1][:5]
+        if len(A) < 5:  # If surname is shorter than 5 letters
+            while len(A) < 5:  # While A is shorter than five letters
+                A = A + "9"  # Pad surname with 9's
 
-        # The decade digit from the year of birth
-        # (e.g. for 1987 it would be 8)
-        b = self.birthday.split("/")[2][2]
+        B = self.birthday.split("/")[2][2] # The decade digit from the year of birth
 
-        # The month of birth (7th character incremented
-        # by 5 if driver is female i.e. 51–62 instead of 01–12)
-        if self._gender() == "male":
-            c = self.birthday.split("/")[1]
+        # The month of birth (7th character incremented by 5 if driver is female i.e. 51–62 instead of 01–12)
+        if self.gender == "male":
+            C = self.birthday.split("/")[1]
         else:
-            c = int(self.birthday.split("/")[1])+5
+            C = int(self.birthday.split("/")[1])+5
 
         # The date within the month of birth
-        d = self.birthday.split("/")[0]
+        D = self.birthday.split("/")[0]
 
         # The year digit from the year of birth
         # (e.g. for 1987 it would be 7)
-        e = self.birthday.split("/")[2][3]
+        E = self.birthday.split("/")[2][3]
 
         # The first two initials of the first names
         # (padded with a 9 if no middle name)
-        if len(self.name.split(" ")) >= 3:
-            f_a = self.name.split(" ")[0][0]
-            f_b = self.name.split(" ")[1][0]
-            f = f_a + f_b
-        else:
-            f = "9"
+        # if len(self.name) >= 3:
+        #     f_a = self.name.split(" ")[0][0]
+        #     f_b = self.name.split(" ")[1][0]
+        #     F = f_a + f_b
+        # else:
+        F = "9"
 
         # Arbitrary digit – usually 9, but decremented to
         # differentiate drivers with the first 13 characters in common
-        g = random.randint(1, 9)
+        G = random.randint(1, 9)
 
         # Two random computer check digits
-        h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
+        H = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
 
         # Appended, two digits representing the licence issue, which increases
         # by 1 for each licence issued
-        i = f"{random.randint(1,9)}0"
+        I = f"{random.randint(1,9)}0"
 
-        return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
+        return "{}{}{}{}{}{}{}{}{}".format(A.upper(), B, C, D, E, F, G, H, I)
 
     def email(self):
         """Random email based on name of John Doe"""
@@ -310,42 +288,30 @@ class JohnDoe:
 
     def image(self):
         """Generate an AI powered image of a person matching
-        John Doe\'s details"""
+        John Doe's details"""
+        full_path = os.path.dirname(os.path.abspath(__file__))  # Load config file to get key
+        config = configparser.ConfigParser()  # Make a configuration parser
+        config.read(os.path.join(full_path, 'config.ini'))  # Load the configuration file
+        api_key = config["GeneratedPhotos"]["API_KEY"]  # Find the API key in file
 
-        # Load config file to get key
-        full_path = os.path.dirname(os.path.abspath(__file__))
-        config = configparser.ConfigParser()
-        config.read(os.path.join(full_path, 'config.ini'))
-
-        # Get API key from config file
-        api_key = config["GeneratedPhotos"]["API_KEY"]
-
-        if api_key != "":
-            # Set header for request
-            HEADER = {"Authorization": f"API-key {api_key}"}
-
-            # Define request age from John Doe's age
-            if self._age() <= 25:
-                age = "young-adult"
-            elif self._age() <= 50:
-                age = "adult"
-            else:
-                age = "elderly"
-
-            # Send request to API 
-            url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random"
-            r = requests.get(url, headers=HEADER)
-            jsonr = json.loads(r.text)
+        if api_key == "":
+            logging.info("No AI image API was supplied - Skipping face generation")
+            return ("No Image available. API key is missing.")
+        else:
+            HEADER = {"Authorization": f"API-key {api_key}"}  # Set header for API request
+            url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random" # Set API URL
+            r = requests.get(url, headers=HEADER)  # Send request to API
+            jsonr = json.loads(r.text)  # Load result as json
 
             # Look for male result in json response
             try:
                 for x in jsonr["faces"]:
-                    if self._gender() == "male":
+                    if self.gender() == "male":
                         if x["meta"]["gender"][0] == "male":
                             # Get 512x512 image URL
                             image_url = x["urls"][-1]["512"]
                             break
-                    elif self._gender() == "female":
+                    elif self.gender() == "female":
                         if x["meta"]["gender"][0] == "female":
                             # Get 512x512 image URL
                             image_url = x["urls"][-1]["512"]
@@ -354,22 +320,34 @@ class JohnDoe:
             except Exception as e:
                 logging.error("Cannot connect to AI image server at this time.")
                 print("Cannot get AI image at this time. Try again later", e)
-            else:
-                if image_url != "":
-                    # Save the image into src/ directory
-                    location = f"{full_path}/src/images/{self.name}_portrait.jpg"
-                    urllib.request.urlretrieve(image_url, location)
-                    return location
-                else:
-                    print("no image url")
-        else:
-            logging.info("No AI image API was supplied - Skipping face generation")
+                return "HGHGHGHG"
+            # else:
+            #     if image_url != "":
+            #         # Save the image into src/ directory
+            #         location = f"{full_path}/src/images/{self.name}_portrait.jpg"
+            #         urllib.request.urlretrieve(image_url, location)
+            #         return "SOMOSOM"
+            #     else:
+            #         print("no image url")
+
+    def list(self):
+        for x in self.__dict__:
+            print(f"{x}: {self.__dict__[x]}")
+
+    def create(self):
+        self.__init__()
+        return self
 
 
 def main():
     logging.basicConfig(filename="event.log", format="%(asctime)s %(levelname)s : %(message)s", level=logging.INFO)
 
-    JohnDoe().create()
+    jd = JohnDoe()
+
+    if args.verbose:  # If user wants verbose output
+        jd.list()
+    if args.pdf:  # If user wants PDF output
+        print("===TODO PDF OUTPUT")
 
 
 if __name__ == "__main__":
