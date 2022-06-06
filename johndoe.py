@@ -49,13 +49,14 @@ class JohnDoe:
         self.gender = self.gender(kwargs)
         self.name = self.name(kwargs)
         self.age = self.age(kwargs)
+        self.birthday = self.birthday()
+        self.address = self.address()
         self.mobile_number = self.mobile_number()
         self.social_security = self.social_security()
-        self.address = self.address()
-        self.bank_card = self.bank_card()
-        self.birthday = self.birthday()
         self.driving_license = self.driving_license()
+        self.bank_card = self.bank_card()
         self.ip_address = self.ip_address()
+        self.image = self.image()
 
     def gender(self, kwargs):
         """Either accept input gender or randomly assign one"""
