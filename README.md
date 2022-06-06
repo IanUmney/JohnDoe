@@ -6,28 +6,25 @@
     </p>
 
 # JohnDoe 
-This simple program creates near-realistic fake data for a fictional subject. 
-
-This data could be used to populate test environments with arbitrary user information.
-
+Johndoe can create highly detailed _fake_ PII. The program was written as a tool for testing environments whereby the generated information can be used to arbitrarily populate data structures. 
 ## Setup
-1. Clone the repo into the desired location
+1. Clone the repo into the current directory
 ```bash
 $ git clone https://github.com/IanUmney/JohnDoe
 ```
-2. Change into that directory
+2. Change into the JohnDoe directory
 ```bash
 $ cd JohnDoe/
 ```
 
 ## Usage
-you can import the module into an existing Python program, or you can use the prohram directly from the CLI
+you can import the module into an existing Python program, or you can use the program directly from the CLI.
 ### Command-Line Interface
-Call the _johndoe.py_ file directly. This will print a dictionary-style output of the information.
+Use Python3 to start the program and get the help page
 ```bash2
 python3 johndoe.py -h
 ```
-See the help pages for additional support
+See how to use the program
 ```bash
 usage: johndoe.py [-h] [--name NAME] [--age {18..99}] [--gender {male,female}] [-p] [-v]
 optional arguments:
@@ -56,14 +53,14 @@ jd.list()  # Print the object attributes
 jd = JohnDoe(name="Jane Doesunt", age=69, gender="female")
 ```
 
-## data:
+## Generated Data:
 + **Name**
     + Forename
         + Random from a list of popular names in 2021
     + Surname
         + Random from a list of the most frequent UK surnames
 + **Age**
-    + Random integer from 18 - 65
+    + Random integer from 18 - 99
     + Birthday
         + current year - age = year born
         + 1 ~ current month = month born
@@ -103,16 +100,6 @@ Enter your API key into the config.ini file to enable generation of faces.
 API_KEY : Enter_Your_API_Here
 ```
 
-## List of Keyword Arguments:
-You can pass none or all of the keyword arguments for the `JohnDoe()` object.
-```python
-JohnDoe(name="Ian Thomas Umney", age=27, nationality="gb", gender="male") 
-"""
-name ----- -> --- str  Should include forename and surname
-age ------ -> --- int > 18
-gender --- -> --- str  "male" or "female"
-"""
-```
 
 ### Example Results
 
