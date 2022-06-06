@@ -287,32 +287,20 @@ class JohnDoe:
 
     def image(self):
         """Generate an AI powered image of a person matching
-        John Doe\'s details"""
+        John Doe's details"""
+        full_path = os.path.dirname(os.path.abspath(__file__))  # Load config file to get key
+        config = configparser.ConfigParser()  # Make a configuration parser
+        config.read(os.path.join(full_path, 'config.ini'))  # Load the configuration file
+        api_key = config["GeneratedPhotos"]["API_KEY"]  # Find the API key in file
 
-        # Load config file to get key
-        full_path = os.path.dirname(os.path.abspath(__file__))
-        config = configparser.ConfigParser()
-        config.read(os.path.join(full_path, 'config.ini'))
-
-        # Get API key from config file
-        api_key = config["GeneratedPhotos"]["API_KEY"]
-
-        if api_key != "":
-            # Set header for request
-            HEADER = {"Authorization": f"API-key {api_key}"}
-
-            # Define request age from John Doe's age
-            if self.age() <= 25:
-                age = "young-adult"
-            elif self.age() <= 50:
-                age = "adult"
-            else:
-                age = "elderly"
-
-            # Send request to API 
-            url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random"
-            r = requests.get(url, headers=HEADER)
-            jsonr = json.loads(r.text)
+        if api_key == "":
+            logging.info("No AI image API was supplied - Skipping face generation")
+            return ("No Image available. API key is missing.")
+        else:
+            HEADER = {"Authorization": f"API-key {api_key}"}  # Set header for API request
+            url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random" # Set API URL
+            r = requests.get(url, headers=HEADER)  # Send request to API
+            jsonr = json.loads(r.text)  # Load result as json
 
             # Look for male result in json response
             try:
@@ -331,33 +319,32 @@ class JohnDoe:
             except Exception as e:
                 logging.error("Cannot connect to AI image server at this time.")
                 print("Cannot get AI image at this time. Try again later", e)
-            else:
-                if image_url != "":
-                    # Save the image into src/ directory
-                    location = f"{full_path}/src/images/{self.name}_portrait.jpg"
-                    urllib.request.urlretrieve(image_url, location)
-                    return location
-                else:
-                    print("no image url")
-        else:
-            logging.info("No AI image API was supplied - Skipping face generation")
+                return "HGHGHGHG"
+            # else:
+            #     if image_url != "":
+            #         # Save the image into src/ directory
+            #         location = f"{full_path}/src/images/{self.name}_portrait.jpg"
+            #         urllib.request.urlretrieve(image_url, location)
+            #         return "SOMOSOM"
+            #     else:
+            #         print("no image url")
 
     def list(self):
         for x in self.__dict__:
             print(f"{x}: {self.__dict__[x]}")
 
     def create(self):
-        name = kwargs.get("name")
+        self.__init__()
+        return self
 
 
 def main():
     logging.basicConfig(filename="event.log", format="%(asctime)s %(levelname)s : %(message)s", level=logging.INFO)
 
-
     jd = JohnDoe()
 
     if args.verbose:  # If user wants verbose output
-        print(jd.list())
+        jd.list()
     if args.pdf:  # If user wants PDF output
         print("===TODO PDF OUTPUT")
 
