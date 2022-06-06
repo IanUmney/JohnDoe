@@ -357,7 +357,11 @@ def main():
 
 
     jd = JohnDoe()
-    print(jd.list())
+
+    if args.verbose:  # If user wants verbose output
+        print(jd.list())
+    if args.pdf:  # If user wants PDF output
+        print("===TODO PDF OUTPUT")
 
 
 if __name__ == "__main__":
