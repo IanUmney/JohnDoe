@@ -19,6 +19,20 @@ $ cd JohnDoe/
 
 ## Usage
 you can import the module into an existing Python program, or you can use the program directly from the CLI.
+```python
+from johndoe import JohnDoe  # Import the JohnDoe module into our project
+jd = JohnDoe()  # Initialise a local variable to a random JohnDoe object
+jd.name = "Anon User"  # Change attributes to the object
+jd.age = 69
+jd.gender = "female"  # Change attributes to the object
+jd.list()  # Print the restults to the CLI
+```
+
+List an object in the commind line using the -l (--list) tag. This is the same as running jd.list() and prints the results.
+```bash
+$ python3 johndoe.py -l
+```
+
 ### Command-Line Interface
 Use Python3 to start the program and get the help page
 ```bash2
@@ -54,7 +68,18 @@ jd = JohnDoe(name="Jane Doesunt", age=69, gender="female")
 ```
 
 ## Generated Data:
-+ **Name**
+Unless specified by you, all the data is randomly generated, following patterns where needed.
+
+You can specify the name, age, and gender attributes of an individual John Doe and the rest will be changed accordingly.
+
+
+**Name** 
+
+The name must consist of both a forename and surname eg. "John Doe". Failing to do so will force the application to quit. 
+
+If no name is submitted x then a random name from the list of popular names and a random surname from a list of popular surnames will be chosen to 
+
+
     + Forename
         + Random from a list of popular names in 2021
     + Surname
