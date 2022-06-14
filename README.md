@@ -6,73 +6,86 @@
     </p>
 
 # JohnDoe 
-This simple program creates near-realistic fake data for a fictional subject. 
-
-This data could be used to populate test environments with arbitrary user information.
-
+Johndoe can create highly detailed _fake_ PII. The program was written as a tool for testing environments whereby the generated information can be used to arbitrarily populate data structures. 
 ## Setup
-1. Clone the repo into the desired location
+1. Clone the repo into the current directory
 ```bash
 $ git clone https://github.com/IanUmney/JohnDoe
 ```
-2. Change into that directory
+2. Change into the JohnDoe directory
 ```bash
 $ cd JohnDoe/
 ```
 
 ## Usage
-Call the _JohnDoe.py_ file directly. This will print a dictionary-style output of the information.
+you can import the module into an existing Python program, or you can use the program directly from the CLI.
+```python
+from johndoe import JohnDoe  # Import the JohnDoe module into our project
+jd = JohnDoe()  # Initialise a local variable to a random JohnDoe object
+jd.name = "Anon User"  # Change attributes to the object
+jd.age = 69
+jd.gender = "female"  # Change attributes to the object
+jd.list()  # Print the restults to the CLI
+```
+
+List an object in the commind line using the -l (--list) tag. This is the same as running jd.list() and prints the results.
 ```bash
-python3 JohnDoe.py
+$ python3 johndoe.py -l
+```
+
+### Command-Line Interface
+Use Python3 to start the program and get the help page
+```bash2
+python3 johndoe.py -h
+```
+See how to use the program
+```bash
+usage: johndoe.py [-h] [--name NAME] [--age {18..99}] [--gender {male,female}] [-p] [-v]
+optional arguments:
+  -h, --help            show this help message and exit
+  --name NAME           Name to use
+  --age {18..99}        Age to use
+  --gender {male,female}
+                        Gender to use
+  -p, --pdf             Print results to PDF page
+  -v, --verbose         Print results to command line
+```
+Example usage:
+```bash
+python3 johndoe.py -v --name "Jane Doe" --age 50 --gender female
 ```
 
 ### Importing the module
-Import the _JohnDoe.py_ file into an existing program and call the .create() function.
+Import the _johndoe.py_ file into an existing program and call the .list() function to print all attributes.
 ```python
-from JohnDoe import JohnDoe
-
-jd = JohnDoe()
-jd.create()
+from johndoe import JohnDoe
+jd = JohnDoe()  # Instantiate the object (with optional kwargs)
+jd.list()  # Print the object attributes
 ```
-
-You can pass `**kwargs` to the JohnDoe object to specify particular variables.
-
+**Keyword Arguments** can be passed to johndoe to specify particular attributes.
 ```python
-jd = JohnDoe(name="Mike Smith", age=22).create()
-```
-**Output from above command**
-```
-name : Mike Smith
-age : 22
-birthday : 21/05/1999
-mobile_number
-    number : 07735167188
-    provider : Three
-address
-    house_number : 257
-    street : Park Road
-    area : Pembrokeshire
-    postcode : SA61 1YG
-email : Mike.Smith@hotmail.co.uk
-ip_address : 213.253.175.72
-social_security : FC812154X
-bank_card
-    card_number : 5573576189231788
-    provider : Mastercard
-    expiry_date : 5/31
-    cvv : 255
-driving_license : smith90521999BJ 20
-image : /home/ian/Development/Python/Github/JohnDoe/src/images/Mike Smith_portrait.jpg
+jd = JohnDoe(name="Jane Doesunt", age=69, gender="female")
 ```
 
-## data:
-+ **Name**
+## Generated Data:
+Unless specified by you, all the data is randomly generated, following patterns where needed.
+
+You can specify the name, age, and gender attributes of an individual John Doe and the rest will be changed accordingly.
+
+
+**Name** 
+
+The name must consist of both a forename and surname eg. "John Doe". Failing to do so will force the application to quit. 
+
+If no name is submitted x then a random name from the list of popular names and a random surname from a list of popular surnames will be chosen to 
+
+
     + Forename
         + Random from a list of popular names in 2021
     + Surname
         + Random from a list of the most frequent UK surnames
 + **Age**
-    + Random integer from 18 - 65
+    + Random integer from 18 - 99
     + Birthday
         + current year - age = year born
         + 1 ~ current month = month born
@@ -112,17 +125,6 @@ Enter your API key into the config.ini file to enable generation of faces.
 API_KEY : Enter_Your_API_Here
 ```
 
-## List of Keyword Arguments:
-You can pass none or all of the keyword arguments for the `JohnDoe()` object.
-```python
-JohnDoe(name="Ian Thomas Umney", age=27, nationality="gb", gender="male") 
-"""
-name ---------- -> ---- String. Should include forename and surname at a minimum
-age ----------- -> ---- Integer > 0
-nationality --- -> ---- String. gb = Great Britain. de = Germany. Etc.
-gender -------- -> ---- String. "male" / "m" or "female" / "f"
-"""
-```
 
 ### Example Results
 
