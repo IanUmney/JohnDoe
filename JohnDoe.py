@@ -8,7 +8,7 @@ import urllib.request
 import os
 
 
-class JohnDoe():
+class JohnDoe:
 
     def __init__(self, **kwargs):
         self.gender = kwargs.get("gender", "male")[0].lower()
@@ -48,7 +48,7 @@ class JohnDoe():
             return self.nationality
 
     def create(self):
-        '''Return all the JohnDoe object information'''
+        """Return all the JohnDoe object information"""
         self_dict = self.__dict__
         for x in self_dict:
             if type(self_dict[x]) == dict:
@@ -59,10 +59,10 @@ class JohnDoe():
                 print(f"{x} : {self_dict[x]}")
 
     def mobile_number(self):
-        '''Get a random phone number in UK format using 
-        genuine prefixes and providers'''
+        """Get a random phone number in UK format using
+        genuine prefixes and providers"""
 
-        with open(f"./src/{self._locale()}/mobile_numbers.txt","r") as file:
+        with open(f"./src/{self._locale()}/mobile_numbers.txt", "r") as file:
             # Get random line from number file
             random_line = random.choice(file.readlines())
 
@@ -76,17 +76,17 @@ class JohnDoe():
             # Get provider associated with number prefix
             provider = " ".join(random_line.strip().split(" ")[1:])
 
-            return {"number": number, 
+            return {"number": number,
                     "provider": provider
                     }
 
     def social_security(self):
-        '''Create a social security number '''
+        """Create a social security number """
 
         # Great Britain
         def gb():
-            '''Gets string with the format of a national insurance
-            number: AB123456C'''
+            """Gets string with the format of a national insurance
+            number: AB123456C"""
 
             # random ascii char
             rac = lambda: random.choice(string.ascii_uppercase)
@@ -96,7 +96,7 @@ class JohnDoe():
         # Germany
         def de():
             # 1-2: Area number of the pension insurance agency
-            a = random.randint(0,15)
+            a = random.randint(0, 15)
 
             # 3-8: Your date of birth
             b = "".join(self.birthday.split("/"))
@@ -115,7 +115,7 @@ class JohnDoe():
                 exit()
 
             # 12: Check digit
-            e = random.randint(1,9)
+            e = random.randint(1, 9)
 
             return "{}{}{}{}{}".format(a, b, c, d, e)
 
@@ -124,11 +124,10 @@ class JohnDoe():
         elif self.nationality == "de":
             return de()
 
-        
     def address(self):
-        '''Get random UK adrress information.
+        """Get random UK adrress information.
         Postcode and area are genuine.
-        Street names are random choice from top 50'''
+        Street names are random choice from top 50"""
 
         # Get random house number
         house_number = random.randint(1, 500)
@@ -148,16 +147,16 @@ class JohnDoe():
             area = random_line.strip().split(",")[1]
 
         address = {"house_number": house_number,
-                    "street": street,
-                    "area": area,
-                    "postcode": postcode
-                    }
+                   "street": street,
+                   "area": area,
+                   "postcode": postcode
+                   }
 
         return address
 
     def name(self):
-        '''Get a random name from the most common forenames
-        and surnames in the UK'''
+        """Get a random name from the most common forenames
+        and surnames in the UK"""
 
         # Get random forename
         with open(f"./src/{self._locale()}/{self._gender()}.txt") as forename_file:
@@ -172,8 +171,8 @@ class JohnDoe():
         return f"{random_name} {random_surname}"
 
     def bank_card(self):
-        '''Get genuine UK bank card information provider.
-        Generate random 10 numbers to complete card.'''
+        """Get genuine UK bank card information provider.
+        Generate random 10 numbers to complete card."""
 
         # Get genuine card number and provider
         with open(f"./src/{self._locale()}/cards.txt", "r") as file:
@@ -183,30 +182,28 @@ class JohnDoe():
                 provider = x.split(" ")[1].strip()
 
         # Concatonate random 10-digit number to complete card
-        number = number + str(random.randint(0000_0000_00, 9999_9999_99))
+        number = number + str(random.randint(0o000_0000_00, 9999_9999_99))
 
         # Random expiry date
-        expiry_date = str(random.randint(1, 12)) + \
-            "/" + str(random.randint(22, 32))
+        expiry_date = str(random.randint(1, 12)) + "/" + str(random.randint(22, 32))
 
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        bank_card = {"card_number": 
-                        f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
-                    "provider": provider,
-                    "expiry_date": expiry_date,
-                    "cvv": cvv
-                    }
+        bank_card = {"card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
+                     "provider": provider,
+                     "expiry_date": expiry_date,
+                     "cvv": cvv
+                     }
 
         return bank_card
 
     def age(self):
-        '''Random age'''
+        """Random age"""
         return random.randint(18, 65)
 
     def birthday(self):
-        '''Random birthday'''
+        """Random birthday"""
 
         year = datetime.datetime.now().year - self._age()
         month = random.randint(1, datetime.datetime.now().month)
@@ -227,7 +224,7 @@ class JohnDoe():
 
             # The first five characters of the surname
             # (padded with 9s if less than 5 characters)
-            if len(self.name.split(" ")[-1].replace("'","")) < 5:
+            if len(self.name.split(" ")[-1].replace("'", "")) < 5:
                 a = self.name.split(" ")[-1][:5].lower()
                 while len(a) < 5:
                     a += "9"
@@ -243,7 +240,7 @@ class JohnDoe():
             if self._gender() == "male":
                 c = self.birthday.split("/")[1]
             else:
-                c = int(self.birthday.split("/")[1])+5
+                c = int(self.birthday.split("/")[1]) + 5
 
             # The date within the month of birth
             d = self.birthday.split("/")[0]
@@ -270,22 +267,22 @@ class JohnDoe():
 
             # Appended, two digits representing the licence issue, which increases
             # by 1 for each licence issued
-            i = f"{random.randint(1,9)}0"
+            i = f"{random.randint(1, 9)}0"
 
             return "{}{}{}{}{}{}{}{} {}".format(a.upper(), b, c, d, e, f, g, h, i)
 
         elif self.nationality == "de":
-            return random.randint(000_000_0, 999_999_9)
+            return random.randint(0000000, 999_999_9)
         else:
             exit()
 
     def email(self):
-        '''Random email based on name of John Doe'''
+        """Random email based on name of John Doe"""
 
         # Email providers with UK TLD
         providers = ["yahoo.com", "gmail.com", "live.com",
-                    "hotmail.com", "icloud.com", "msn.com"
-                    ]
+                     "hotmail.com", "icloud.com", "msn.com"
+                     ]
 
         provider = random.choice(providers)
 
@@ -294,8 +291,8 @@ class JohnDoe():
         return email
 
     def ip_address(self):
-        '''Generate a random IP based on a list 
-        of genuine UK IP address blocks.'''
+        """Generate a random IP based on a list 
+        of genuine UK IP address blocks."""
 
         # Get random line from IP csv file
         with open(f"./src/{self._locale()}/ip_address.csv") as f:
@@ -328,8 +325,8 @@ class JohnDoe():
         return "{}.{}.{}.{}".format(ip1, ip2, ip3, ip4)
 
     def image(self):
-        '''Generate an AI powered image of a person matching
-        John Doe\'s details'''
+        """Generate an AI powered image of a person matching
+        John Doe\'s details"""
 
         # Load config file to get key
         full_path = os.path.dirname(os.path.abspath(__file__))
@@ -341,7 +338,7 @@ class JohnDoe():
 
         if api_key != "":
             # Set header for request
-            HEADER = {"Authorization": f"API-key {api_key}"}
+            header = {"Authorization": f"API-key {api_key}"}
 
             # Define reqest age from John Doe's age
             if self._age() <= 25:
@@ -353,11 +350,11 @@ class JohnDoe():
 
             # Send request to API 
             url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random"
-            r = requests.get(url, headers=HEADER)
+            r = requests.get(url, headers=header)
             jsonr = json.loads(r.text)
 
             # Look for male result in json response
-            try: 
+            try:
                 for x in jsonr["faces"]:
                     if self._gender() == "male":
                         if x["meta"]["gender"][0] == "male":
@@ -381,5 +378,6 @@ class JohnDoe():
                 else:
                     print("no image url")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     JohnDoe().create()
