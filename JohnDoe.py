@@ -333,3 +333,5 @@ class JohnDoe:
 if __name__ == "__main__":
     JohnDoe().create()
 
+# todo README.md
+# todo arguments
