@@ -1,6 +1,8 @@
 import random
 import string
 import datetime
+import images
+import argparse
 # import configparser
 # import requests
 # import json
@@ -12,7 +14,10 @@ class JohnDoe:
 
     def __init__(self, **kwargs):
         self.gender = kwargs.get("gender", "male")[0].lower()
-        self.name = kwargs.get("name", self.name())
+        if not kwargs.get("name"):
+            self.name = self.name()
+        else:
+            self.name = kwargs.get("name")
         self.age = int(kwargs.get("age", self.age()))
         self.birthday = self.birthday()
         self.mobile_number = self.mobile_number()
@@ -23,6 +28,7 @@ class JohnDoe:
         self.bank_card = self.bank_card()
         self.driving_license = self.driving_license()
         # self.image = self.image()
+        self.documents = kwargs.get("documents", False)
 
     def _age(self):
         if self.age <= 18:
@@ -49,6 +55,10 @@ class JohnDoe:
                     print(f"\t{y} : {self_dict[x][y]}")
             else:
                 print(f"{x} : {self_dict[x]}")
+
+        if self.documents:
+            images.create_nino_image(self.nino, self.name)
+
         return self_dict
 
     @staticmethod
@@ -74,12 +84,14 @@ class JohnDoe:
 
     @staticmethod
     def nino():
-        """Create a national insurance number with format AB123456C"""
+        # todo Add temp prefixes from https://www.gov.uk/hmrc-internal-manuals/national-insurance-manual/nim39110
+        """Create a national insurance number with format QQ 12 34 56 C"""
 
         # random ascii char
         _rac = lambda: random.choice(string.ascii_uppercase)
+        _random_int = lambda: random.randint(10, 99)
 
-        return f"{_rac()}{_rac()}{random.randint(111_111, 999_999)}{_rac()}"
+        return f"{_rac()}{_rac()} {_random_int()} {_random_int()} {_random_int()} {_rac()}"
 
     @staticmethod
     def address():
@@ -331,7 +343,15 @@ class JohnDoe:
 
 
 if __name__ == "__main__":
-    JohnDoe().create()
+    parser = argparse.ArgumentParser(description="Generate PII for testing environments")
+    parser.add_argument("--documents", action="store_true", help="Generate identity documents")
+    parser.add_argument("--name", type=str, help="Name (first last)")
+
+    args = parser.parse_args()
+    kw = {
+        "documents": args.documents,
+        "name": args.name
+    }
+    JohnDoe(**kw).create()
 
 # todo README.md
-# todo arguments
