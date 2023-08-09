@@ -74,10 +74,7 @@ class JohnDoe:
 
     @staticmethod
     def nino():
-        """Create a national insurance number """
-
-        """Gets string with the format of a national insurance
-        number: AB123456C"""
+        """Create a national insurance number with format AB123456C"""
 
         # random ascii char
         _rac = lambda: random.choice(string.ascii_uppercase)
@@ -177,7 +174,7 @@ class JohnDoe:
         return f"{day}/{month}/{year}"
 
     def driving_license(self):
-        """Driving license according to UK format, for John Doe\'s details"""
+        """Driving license according to UK format, for John Doe's details"""
 
         # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
