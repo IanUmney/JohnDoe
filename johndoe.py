@@ -32,7 +32,7 @@ class JohnDoe:
         # self.image = self.image()
         self.address = self.address()
         self.birthday = self.birthday()
-        self.bank_card = self.bank_card()
+        self.banking = self.banking_info()
         self.ip_address = self.ip_address()
         self.mobile_number = self.mobile_number()
         self.driving_license = self.driving_license()
@@ -172,9 +172,25 @@ class JohnDoe:
                 }
 
     @staticmethod
-    def bank_card():
+    def banking_info():
         """Get genuine UK bank card information provider.
         Generate random 10 numbers to complete card."""
+
+        def account_details() -> dict:
+            with open("src/sortcodes.txt", "r") as f:
+                lines = f.readlines()
+                l = random.choice(lines)
+
+                sort = l.split("\t")[0]
+                _sort_code = f"{sort[0:2]}-{sort[2:4]}-{sort[4:6]}"
+
+                _bank = l.split("\t")[1].strip("\n")
+
+                _account_number = random.randint(12345678, 87654321)
+
+                return {"sort_code": _sort_code,
+                        "account_number": _account_number,
+                        "bank": _bank}
 
         # Get genuine card number and provider
         with open(f"./src/cards.txt", "r") as file:
@@ -192,7 +208,14 @@ class JohnDoe:
         # Random CVV
         cvv = str(random.randint(123, 987))
 
-        return {"card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
+        account_number = account_details()["account_number"]
+        sort_code = account_details()["sort_code"]
+        bank = account_details()["bank"]
+
+        return {"bank": bank,
+                "sort_code": sort_code,
+                "account_number": account_number,
+                "card_number": f"{number[:4]} {number[4:8]} {number[8:12]} {number[12:16]}",
                 "provider": provider,
                 "expiry_date": expiry_date,
                 "cvv": cvv
