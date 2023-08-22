@@ -1,7 +1,7 @@
 import random
 import string
 import datetime
-import images
+import identity_documents
 import argparse
 import json
 
@@ -104,9 +104,9 @@ class JohnDoe:
     def create(self):
         """Print the JohnDoe object information"""
 
-        # Create identity documents bool
-        if self.documents:
-            images.create_nino_image(self.nino, self.name)
+        # Create identity documents
+        # if self.documents:
+            # images.create_nino_image(self.nino, self.name)
 
         print(json.dumps(self.__dict__, indent=4))
 
