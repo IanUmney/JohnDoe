@@ -3,63 +3,112 @@ import string
 import datetime
 import images
 import argparse
-# import configparser
-# import requests
-# import json
-# import urllib.request
-# import os
+import json
 
 
 class JohnDoe:
 
     def __init__(self, **kwargs):
-        self.gender = kwargs.get("gender", "male")[0].lower()
-        if not kwargs.get("name"):
-            self.name = self.name()
+        """Initialize a JohnDoe object with optional parameters.
+
+        Parameters:
+        - gender (str): Gender of the individual ('m' or 'f').
+        - name (str): Full name of the individual.
+        - age (str): Age of the individual (default is random between 18 and 65).
+        - documents (bool): Whether to generate identity documents (default is False).
+         """
+
+        self.gender = self.gender(kwargs.get("gender"))  # Must be first as self.name relies on gender
+        self.name = self.name(kwargs.get("name"))
+        self.age = self.age(kwargs.get("age"))
+
+        if kwargs.get("documents"):
+            self.documents = True
         else:
-            self.name = kwargs.get("name")
-        self.age = int(kwargs.get("age", self.age()))
-        self.birthday = self.birthday()
-        self.mobile_number = self.mobile_number()
-        self.address = self.address()
-        self.email = self.email()
-        self.ip_address = self.ip_address()
+            self.documents = False
+
         self.nino = self.nino()
-        self.bank_card = self.bank_card()
-        self.driving_license = self.driving_license()
+        self.email = self.email()
         # self.image = self.image()
-        self.documents = kwargs.get("documents", False)
+        self.address = self.address()
+        self.birthday = self.birthday()
+        self.bank_card = self.bank_card()
+        self.ip_address = self.ip_address()
+        self.mobile_number = self.mobile_number()
+        self.driving_license = self.driving_license()
 
-    def _age(self):
-        if self.age <= 18:
-            exit(f"You cannot generate minors. Odep.")
-        else:
-            return self.age
+    @staticmethod
+    def gender(gender):
+        """Check is the gender has been given, is correct, or assign a random gender."""
 
-    # Private function to check gender is given correctly
-    def _gender(self):
-        if self.gender == "m":
-            return "male"
-        elif self.gender == "f":
-            return "female"
+        if gender is not None and gender[0].lower() in ["m", "f"]:
+            return gender[0].lower()
+
+        elif gender is not None:
+            exit("Gender must be 'male' or 'female'. No 'Apache attack helicopters'")
+
         else:
-            exit("Gender must either be 'male' or 'female'! No 'Apache Attack Helicopters'")
+            randint = random.randint(1, 999)
+
+            if randint % 2 == 0:
+                return "m"
+            else:
+                return "f"
+
+    def name(self, name):
+        """Handle naming the person from input or generation"""
+
+        def random_firstname():
+            with open(f"./src/{self.gender}.txt") as forename_file:
+                _line = forename_file.readlines()
+                _random_firstname = random.choice(_line).strip()
+                return _random_firstname
+
+        def random_surname():
+            with open(f"./src/surnames.txt") as surname_file:
+                _line = surname_file.readlines()
+                _random_surname = random.choice(_line).strip()
+                return _random_surname
+
+        if name is not None:
+
+            if len(name.split()) == 1:
+                generated_surname = random_surname()
+                return f"{name.capitalize()} {generated_surname}"
+
+            elif len(name.split()) == 2:
+                first = name.split()[0].capitalize()
+                second = name.split()[1].capitalize()
+                name = f"{first} {second}"
+                return name
+
+            elif len(name.split()) >= 3:
+                exit("The name can only contain first and last name.")
+
+        else:
+            generated_name = f"{random_firstname()} {random_surname()}"
+            return generated_name
+
+    @staticmethod
+    def age(age) -> int:
+
+        if age is not None and age < 18:
+            raise ValueError(f"You cannot generate minors! Nonce.")
+
+        elif age is not None and age >= 18:
+            return age
+
+        else:
+            return random.randint(18, 80)
 
     def create(self):
-        """Return all the JohnDoe object information"""
-        self_dict = self.__dict__
-        for x in self_dict:
-            if type(self_dict[x]) == dict:
-                print(f"{x}")
-                for y in self_dict[x]:
-                    print(f"\t{y} : {self_dict[x][y]}")
-            else:
-                print(f"{x} : {self_dict[x]}")
+        """Print the JohnDoe object information"""
 
+        # Create identity documents bool
         if self.documents:
             images.create_nino_image(self.nino, self.name)
 
-        return self_dict
+        print(json.dumps(self.__dict__, indent=4))
 
     @staticmethod
     def mobile_number():
@@ -95,7 +144,7 @@ class JohnDoe:
 
     @staticmethod
     def address():
-        """Get random UK adrress information.
+        """Get random UK address information.
         Postcode and area are genuine.
         Street names are random choice from top 50"""
 
@@ -121,22 +170,6 @@ class JohnDoe:
                 "area": area,
                 "postcode": postcode
                 }
-
-    def name(self):
-        """Get a random name from the most common forenames
-        and surnames in the UK"""
-
-        # Get random forename
-        with open(f"./src/{self._gender()}.txt") as forename_file:
-            line = forename_file.readlines()
-            random_name = random.choice(line).strip()
-
-        # Get random surname
-        with open(f"./src/surnames.txt") as surname_file:
-            rl = surname_file.readlines()
-            random_surname = random.choice(rl).strip()
-
-        return f"{random_name} {random_surname}"
 
     @staticmethod
     def bank_card():
@@ -165,15 +198,10 @@ class JohnDoe:
                 "cvv": cvv
                 }
 
-    @staticmethod
-    def age():
-        """Random age"""
-        return random.randint(18, 65)
-
     def birthday(self):
         """Random birthday"""
 
-        year = datetime.datetime.now().year - self._age()
+        year = datetime.datetime.now().year - self.age
         month = random.randint(1, datetime.datetime.now().month)
         day = random.randint(1, 28)
 
@@ -186,7 +214,7 @@ class JohnDoe:
         return f"{day}/{month}/{year}"
 
     def driving_license(self):
-        """Driving license according to UK format, for John Doe's details"""
+        """Driving license according to UK format"""
 
         # The first five characters of the surname
         # (padded with 9s if less than 5 characters)
@@ -203,7 +231,7 @@ class JohnDoe:
 
         # The month of birth (7th character incremented
         # by 5 if driver is female i.e. 51–62 instead of 01–12)
-        if self._gender() == "male":
+        if self.gender == "male":
             c = self.birthday.split("/")[1]
         else:
             c = int(self.birthday.split("/")[1]) + 5
@@ -253,8 +281,7 @@ class JohnDoe:
 
     @staticmethod
     def ip_address():
-        """Generate a random IP based on a list 
-        of genuine UK IP address blocks."""
+        """Generate a random IP based on a list of genuine UK IP address blocks."""
 
         # Get random line from IP csv file
         with open(f"./src/ip_address.csv") as f:
@@ -342,16 +369,19 @@ class JohnDoe:
     #                 print("no image url")
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Generate PII for testing environments")
-    parser.add_argument("--documents", action="store_true", help="Generate identity documents")
     parser.add_argument("--name", type=str, help="Name (first last)")
+    parser.add_argument("--age", type=int, help="Age (>18)")
+    parser.add_argument("--gender", help="Gender (m/f)")
+    parser.add_argument("-D", "-d", action="store_true", help="Generate identity documents")
+    arguments = parser.parse_args()
+    args_dict = vars(arguments)
 
-    args = parser.parse_args()
-    kw = {
-        "documents": args.documents,
-        "name": args.name
-    }
-    JohnDoe(**kw).create()
+    jd = JohnDoe(**args_dict)
 
-# todo README.md
+    jd.create()
+
+
+if __name__ == "__main__":
+    main()
