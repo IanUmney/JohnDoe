@@ -101,14 +101,14 @@ class JohnDoe:
         else:
             return random.randint(18, 80)
 
-    def create(self):
+    def json(self):
         """Print the JohnDoe object information"""
 
         # Create identity documents
         # if self.documents:
             # images.create_nino_image(self.nino, self.name)
 
-        print(json.dumps(self.__dict__, indent=4))
+        return json.dumps(self.__dict__, indent=4)
 
     @staticmethod
     def mobile_number():
@@ -403,7 +403,7 @@ def main():
 
     jd = JohnDoe(**args_dict)
 
-    jd.create()
+    print(jd.json())
 
 
 if __name__ == "__main__":
