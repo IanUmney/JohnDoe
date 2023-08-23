@@ -79,14 +79,14 @@ def create_nino_image(_nino, _name):
     draw_nino(_nino, draw)
     draw_name(_name, draw)
 
-    output_image_path = "src/output.jpg"
+    output_image_path = "src/generated_national_identity_card.jpg"
 
     image.save(output_image_path)
 
 
 def create_identify_card(forename, surname, gender, date_of_birth, place_of_birth):
 
-    image = Image.open("src/uk-identity-card.jpeg")
+    image = Image.open("src/national_identity_card.jpeg")
     draw = ImageDraw.Draw(image)
 
     nationality = "British Citizen"
@@ -125,7 +125,7 @@ def poscal():
             print(f"Mouse clicked at (x, y): ({x}, {y})")
 
     # Load an image
-    image_path = "src/output.jpg"
+    image_path = "src/generated_national_identity_card.jpg"
     image = cv2.imread(image_path)
 
     # Display the image
