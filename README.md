@@ -36,42 +36,47 @@ print(jd.json())
 ```
 or from the command line
 ```bash
-$ python3 -m johndoe 
+$ python3 -m johndoe --document
 ```
 
 ### Example output:
 ```json
 {
     "gender": "f",
-    "name": "Lilly-ann Painter",
-    "age": 69,
+    "name": "Mina Nightingale",
+    "age": 44,
     "documents": false,
-    "nino": "LM 39 92 35 C",
-    "email": "Lilly-ann.Painter@hotmail.com",
+    "nino": "JE 95 43 28 O",
+    "email": "Mina.Nightingale@icloud.com",
     "address": {
-        "house_number": 291,
-        "street": "Broadway",
-        "area": "Hammersmith and Fulham",
-        "postcode": "NW10 5AZ"
+        "house_number": 8,
+        "street": "Mill Road",
+        "area": "Cornwall",
+        "postcode": "PL31 1AN"
     },
-    "birthday": "20/04/1954",
+    "birthday": "11/02/1979",
     "banking": {
         "bank": "LLOYDS BANK PLC",
-        "sort_code": "43-68-65",
-        "account_number": 26228720,
-        "card_number": "5573 5757 2200 9728",
+        "sort_code": "60-19-08",
+        "account_number": 79538994,
+        "card_number": "5573 5725 3020 6413",
         "provider": "Mastercard",
-        "expiry_date": "11/31",
-        "cvv": "437"
+        "expiry_date": "1/31",
+        "cvv": "425"
     },
-    "ip_address": "146.80.23.90",
+    "ip_address": "89.193.96.236",
     "mobile_number": {
-        "number": "07802451005",
-        "provider": "O2"
+        "number": "07826959922",
+        "provider": "Vodafone"
     },
-    "driving_license": "PAINT5920499RT 40"
+    "driving_license": "NIGHT7711999JE 50"
 }
 ```
+#### National Identity Card
+![generated_national_identity_card.jpg](src/national_identity_card/generated_national_identity_card.jpg)
+#### National Insurance Number Card
+![generated_national_insurance_card.jpg](src/national_insurance/nino_card.jpg)
+
 
 
 ## Upcoming Features

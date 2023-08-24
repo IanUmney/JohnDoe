@@ -4,6 +4,8 @@ import datetime
 import identity_documents
 import argparse
 import json
+from src import nino
+from src import national_identity_card as nic
 
 
 class JohnDoe:
@@ -22,10 +24,9 @@ class JohnDoe:
         self.name = self.name(kwargs.get("name"))
         self.age = self.age(kwargs.get("age"))
 
-        if kwargs.get("documents"):
-            self.documents = True
-        else:
-            self.documents = False
+        if kwargs.get("document"):
+            self.document()
+            print("TRUE")
 
         self.nino = self.nino()
         self.email = self.email()
@@ -59,13 +60,13 @@ class JohnDoe:
         """Handle naming the person from input or generation"""
 
         def random_firstname():
-            with open(f"./src/{self.gender}.txt") as forename_file:
+            with open(f"./src/names/{self.gender}.txt") as forename_file:
                 _line = forename_file.readlines()
                 _random_firstname = random.choice(_line).strip()
                 return _random_firstname
 
         def random_surname():
-            with open(f"./src/surnames.txt") as surname_file:
+            with open(f"./src/names/surnames.txt") as surname_file:
                 _line = surname_file.readlines()
                 _random_surname = random.choice(_line).strip()
                 return _random_surname
@@ -104,9 +105,6 @@ class JohnDoe:
     def json(self):
         """Print the JohnDoe object information"""
 
-        # Create identity documents
-        # if self.documents:
-            # images.create_nino_image(self.nino, self.name)
 
         return json.dumps(self.__dict__, indent=4)
 
@@ -144,7 +142,7 @@ class JohnDoe:
 
     @staticmethod
     def address():
-        """Get random UK address information.
+        """Get random UK addresses information.
         Postcode and area are genuine.
         Street names are random choice from top 50"""
 
@@ -152,13 +150,13 @@ class JohnDoe:
         house_number = random.randint(1, 500)
 
         # Get random street name
-        with open(f"./src/streets.txt", "r") as street_file:
+        with open(f"./src/addresses/streets.txt", "r") as street_file:
             line = street_file.readlines()
             random_line = random.choice(line)
             street = random_line.strip()
 
         # Get random postcode and area
-        with open(f"./src/postcodes.txt") as file:
+        with open(f"./src/addresses/postcodes.txt") as file:
             line = file.readlines()
             random_line = random.choice(line)
 
@@ -177,7 +175,7 @@ class JohnDoe:
         Generate random 10 numbers to complete card."""
 
         def account_details() -> dict:
-            with open("src/sortcodes.txt", "r") as f:
+            with open("src/bank/sortcodes.txt", "r") as f:
                 lines = f.readlines()
                 l = random.choice(lines)
 
@@ -193,7 +191,7 @@ class JohnDoe:
                         "bank": _bank}
 
         # Get genuine card number and provider
-        with open(f"./src/cards.txt", "r") as file:
+        with open(f"./src/bank/cards.txt", "r") as file:
             rl = file.readlines()
             for x in rl:
                 number = x.split(" ")[0].strip()
@@ -304,10 +302,10 @@ class JohnDoe:
 
     @staticmethod
     def ip_address():
-        """Generate a random IP based on a list of genuine UK IP address blocks."""
+        """Generate a random IP based on a list of genuine UK IP addresses blocks."""
 
         # Get random line from IP csv file
-        with open(f"./src/ip_address.csv") as f:
+        with open(f"src/addresses/ip_address.csv") as f:
             ip_range = next(f)
             for num, aline in enumerate(f, 2):
                 if random.randrange(num):
@@ -336,60 +334,16 @@ class JohnDoe:
 
         return "{}.{}.{}.{}".format(ip1, ip2, ip3, ip4)
 
-    """This function will be worked on for future releases"""
-    # def image(self):
-    #     """Generate an AI powered image of a person matching
-    #     John Doe\'s details"""
-    #
-    #     # Load config file to get key
-    #     full_path = os.path.dirname(os.path.abspath(__file__))
-    #     config = configparser.ConfigParser()
-    #     config.read(os.path.join(full_path, 'config.ini'))
-    #
-    #     # Get API key from confif file
-    #     api_key = config["GeneratedPhotos"]["API_KEY"]
-    #
-    #     if api_key != "":
-    #         # Set header for request
-    #         header = {"Authorization": f"API-key {api_key}"}
-    #
-    #         # Define reqest age from John Doe's age
-    #         if self._age() <= 25:
-    #             age = "young-adult"
-    #         elif self._age() <= 50:
-    #             age = "adult"
-    #         else:
-    #             age = "elderly"
-    #
-    #         # Send request to API
-    #         url = f"https://api.generated.photos/api/v1/faces?age={age}&order_by=random"
-    #         r = requests.get(url, headers=header)
-    #         jsonr = json.loads(r.text)
-    #
-    #         # Look for male result in json response
-    #         try:
-    #             for x in jsonr["faces"]:
-    #                 if self._gender() == "male":
-    #                     if x["meta"]["gender"][0] == "male":
-    #                         # Get 512x512 image URL
-    #                         image_url = x["urls"][-1]["512"]
-    #                         break
-    #                 elif self._gender() == "female":
-    #                     if x["meta"]["gender"][0] == "female":
-    #                         # Get 512x512 image URL
-    #                         image_url = x["urls"][-1]["512"]
-    #                         break
-    #
-    #         except Exception as e:
-    #             print("Cannot get AI image at this time. Try again later", e)
-    #         else:
-    #             if image_url != "":
-    #                 # Save the image into src/ directory
-    #                 location = f"{full_path}/src/images/{self.name}_portrait.jpg"
-    #                 requests.urlretrieve(image_url, location)
-    #                 return location
-    #             else:
-    #                 print("no image url")
+    def document(self):
+        nino.Nino(self.name, self.nino)
+        nic.NationalIdentityCard(forename=self.name.split(" ")[0],
+                                  surname=self.name.split(" ")[1],
+                                  date_of_birth=self.birthday,
+                                  gender=self.gender,
+                                  place_of_birth=self.address["area"]).generate_card()
+
+    def create(self):
+        print(self.json())
 
 
 def main():
@@ -397,11 +351,20 @@ def main():
     parser.add_argument("--name", type=str, help="Name (first last)")
     parser.add_argument("--age", type=int, help="Age (>18)")
     parser.add_argument("--gender", help="Gender (m/f)")
-    parser.add_argument("-D", "-d", action="store_true", help="Generate identity documents")
+    parser.add_argument("--document", action="store_true", help="Generate identity documents")
     arguments = parser.parse_args()
     args_dict = vars(arguments)
 
     jd = JohnDoe(**args_dict)
+
+    ident_card = nic.NationalIdentityCard(forename=jd.name.split(" ")[0],
+                                          surname=jd.name.split(" ")[1],
+                                          date_of_birth=jd.birthday,
+                                          gender=jd.gender,
+                                          place_of_birth=jd.address["area"])
+    nino.Nino(jd.name, jd.nino)
+
+    ident_card.generate_card()
 
     print(jd.json())
 
