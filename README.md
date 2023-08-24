@@ -31,8 +31,7 @@ from johndoe import JohnDoe
 # Create a JohnDoe instance
 jd = JohnDoe()
 
-# print JSON to terminal
-print(jd.json())
+jd.create()
 ```
 or from the command line
 ```bash
@@ -77,14 +76,3 @@ $ python3 -m johndoe --document
 #### National Insurance Number Card
 ![generated_national_insurance_card.jpg](src/national_insurance/nino_card.jpg)
 
-
-
-## Upcoming Features
-- Document creation
-  - Generate bank card and national identity card images
-- AI image creation (re-integration)
-- More PII
-  - Work history
-  - Online accounts / passwords
-  - Education
-  - and more
