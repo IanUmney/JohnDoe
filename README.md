@@ -20,7 +20,7 @@ $ cd JohnDoe/
 ```
 3. Install via pip
 ```bash
-$ pip install -r requirements.txt
+$ pip install .
 ```
 
 ### Usage
@@ -41,34 +41,33 @@ $ python3 -m johndoe --document
 ### Example output:
 ```json
 {
-    "gender": "f",
-    "name": "Mina Nightingale",
-    "age": 44,
-    "documents": false,
-    "nino": "JE 95 43 28 O",
-    "email": "Mina.Nightingale@icloud.com",
+    "gender": "m",
+    "name": "Lucas Richards",
+    "age": 35,
+    "nino": "BD 59 71 22 Y",
+    "email": "Lucas.Richards@yahoo.com",
     "address": {
-        "house_number": 8,
-        "street": "Mill Road",
-        "area": "Cornwall",
-        "postcode": "PL31 1AN"
+        "house_number": 128,
+        "street": "South Street",
+        "area": "North Ayrshire",
+        "postcode": "KA27 8BE"
     },
-    "birthday": "11/02/1979",
+    "birthday": "18/01/1988",
     "banking": {
         "bank": "LLOYDS BANK PLC",
-        "sort_code": "60-19-08",
-        "account_number": 79538994,
-        "card_number": "5573 5725 3020 6413",
+        "sort_code": "11-06-35",
+        "account_number": 69450610,
+        "card_number": "5573 5742 3918 7035",
         "provider": "Mastercard",
-        "expiry_date": "1/31",
-        "cvv": "425"
+        "expiry_date": "12/22",
+        "cvv": "260"
     },
-    "ip_address": "89.193.96.236",
+    "ip_address": "188.125.93.31",
     "mobile_number": {
-        "number": "07826959922",
+        "number": "07392985340",
         "provider": "Vodafone"
     },
-    "driving_license": "NIGHT7711999JE 50"
+    "driving_license": "RICHA8618899NJ 60"
 }
 ```
 #### National Identity Card
