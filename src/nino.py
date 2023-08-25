@@ -5,10 +5,10 @@ class Nino:
 
     def __init__(self, name, nino):
 
-        self.generate_nino_card(name, nino)
+        self.name = name
+        self.nino = nino
 
-    @staticmethod
-    def generate_nino_card(_name, _nino):
+    def generate_card(self):
         """Loads blank NINO card and draws name and number to it"""
 
         image = Image.open("src/national_insurance/NINO_Card.png")
@@ -32,10 +32,10 @@ class Nino:
 
             draw.text(text_position, name, font=font, fill=(0, 0, 0))
 
-        draw_nino(_nino, draw)
-        draw_name(_name, draw)
+        draw_nino(self.nino, draw)
+        draw_name(self.name, draw)
 
         output_image_path = "src/national_insurance/nino_card.jpg"
 
         image.save(output_image_path)
-        image.show(f"{_name}, {_nino}")
+        image.show(f"{self.name}, {self.nino}")
