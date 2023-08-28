@@ -6,6 +6,8 @@ import argparse
 import json
 from src import nino
 from src import national_identity_card as nic
+import driving_license
+import bank
 
 
 class JohnDoe:
@@ -20,14 +22,14 @@ class JohnDoe:
         - documents (bool): Whether to generate identity documents (default is False).
          """
 
-        self.gender = self.gender(kwargs.get("gender"))  # Must be first as self.name relies on gender
+        self.gender = self.gender(kwargs.get("gender"))  # Must be first as self.name relies on gender (m\f)
         self.name = self.name(kwargs.get("name"))
         self.age = self.age(kwargs.get("age"))
 
         if kwargs.get("document"):
             self.document()
             print("TRUE")
-
+        self.car = self.car()
         self.nino = self.nino()
         self.email = self.email()
         # self.image = self.image()
@@ -39,6 +41,23 @@ class JohnDoe:
         self.driving_license = self.driving_license()
 
     @staticmethod
+    def car():
+
+        def number_plate():
+            letters = string.ascii_letters
+            digits = string.digits
+
+            two_letters = random.choices(letters.upper(), k=2)
+            two_numbers = random.choices(digits, k=2)
+            space = " "
+            three_letters = random.choices(letters.upper(), k=3)
+
+            random_string = "".join(two_letters + two_numbers + [space] + three_letters)
+            return random_string
+
+        return {"number_plate": number_plate()}
+
+    @staticmethod
     def gender(gender):
         """Check is the gender has been given, is correct, or assign a random gender."""
 
@@ -46,7 +65,7 @@ class JohnDoe:
             return gender[0].lower()
 
         elif gender is not None:
-            exit("Gender must be 'male' or 'female'. No 'Apache attack helicopters'")
+            exit("Gender must be '[m]ale' or '[f]emale'.")
 
         else:
             randint = random.randint(1, 999)
@@ -104,7 +123,6 @@ class JohnDoe:
 
     def json(self):
         """Print the JohnDoe object information"""
-
 
         return json.dumps(self.__dict__, indent=4)
 
@@ -275,7 +293,7 @@ class JohnDoe:
 
         # Arbitrary digit – usually 9, but decremented to
         # differentiate drivers with the first 13 characters in common
-        g = "9"
+        g = "9"  # todo make this dynamic (as above with db)
 
         # Two computer check digits
         h = f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
@@ -335,12 +353,30 @@ class JohnDoe:
         return "{}.{}.{}.{}".format(ip1, ip2, ip3, ip4)
 
     def document(self):
-        nino.Nino(self.name, self.nino)
-        nic.NationalIdentityCard(forename=self.name.split(" ")[0],
-                                  surname=self.name.split(" ")[1],
-                                  date_of_birth=self.birthday,
-                                  gender=self.gender,
-                                  place_of_birth=self.address["area"]).generate_card()
+        ident_card = nic.NationalIdentityCard(forename=self.name.split(" ")[0],
+                                              surname=self.name.split(" ")[1],
+                                              date_of_birth=self.birthday,
+                                              gender=self.gender,
+                                              place_of_birth=self.address["area"])
+
+        dl = driving_license.DrivingLicense(forename=self.name.split(" ")[0],
+                                            surname=self.name.split(" ")[1],
+                                            date_of_birth=self.birthday,
+                                            place_of_birth=self.address["area"],
+                                            gender=self.gender,
+                                            dvla_number=self.driving_license,
+                                            address=f"{self.address['house_number']} {self.address['street']}\n"
+                                                    f"{self.address['area']} {self.address['postcode']}")
+
+        bank_card = bank.Bank(name=self.name, cc_number=self.banking["card_number"], expiry=self.banking["expiry_date"])
+
+        from src import nino
+        nino = nino.Nino(self.name, self.nino)
+
+        nino.generate_card()  # Generate national insurance card
+        dl.generate_card()  # Generate driving license
+        ident_card.generate_card()  # generate national identity card
+        bank_card.generate()
 
     def create(self):
         print(self.json())
@@ -355,18 +391,34 @@ def main():
     arguments = parser.parse_args()
     args_dict = vars(arguments)
 
-    jd = JohnDoe(**args_dict)
+    if arguments.document:
+        jd = JohnDoe(**args_dict)
 
-    ident_card = nic.NationalIdentityCard(forename=jd.name.split(" ")[0],
-                                          surname=jd.name.split(" ")[1],
-                                          date_of_birth=jd.birthday,
-                                          gender=jd.gender,
-                                          place_of_birth=jd.address["area"])
-    nino.Nino(jd.name, jd.nino)
+        dl = driving_license.DrivingLicense(forename=jd.name.split(" ")[0],
+                                            surname=jd.name.split(" ")[1],
+                                            date_of_birth=jd.birthday,
+                                            place_of_birth=jd.address["area"],
+                                            gender=jd.gender,
+                                            dvla_number=jd.driving_license,
+                                            address=f"{jd.address['house_number']} {jd.address['street']}\n"
+                                                    f"{jd.address['area']} {jd.address['postcode']}")
 
-    ident_card.generate_card()
+        ident_card = nic.NationalIdentityCard(forename=jd.name.split(" ")[0],
+                                              surname=jd.name.split(" ")[1],
+                                              date_of_birth=jd.birthday,
+                                              gender=jd.gender,
+                                              place_of_birth=jd.address["area"])
 
-    print(jd.json())
+        bank_card = bank.Bank(name=jd.name, cc_number=jd.banking["card_number"], expiry=jd.banking["expiry_date"])
+        ni = nino.Nino(name=jd.name, nino=jd.nino)
+
+        # Generate all the cards
+        dl.generate_card()
+        ident_card.generate_card()
+        bank_card.generate()
+        ni.generate_card()
+
+        print(jd.json())
 
 
 if __name__ == "__main__":

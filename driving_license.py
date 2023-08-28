@@ -8,6 +8,7 @@ class DrivingLicense:
     def __init__(self, forename, surname, gender, date_of_birth, place_of_birth, dvla_number, address):
         self.forename = forename
         self.surname = surname
+        self.name = f"{forename} {surname}"
         self.gender = gender
         self.date_of_birth = date_of_birth
         self.place_of_birth = place_of_birth
@@ -32,10 +33,10 @@ class DrivingLicense:
         # todo signature
 
         font = ImageFont.truetype("src/fonts/Roboto-black.ttf", size=8)
-        font2 = ImageFont.truetype("src/fonts/Roboto-black.ttf", size=13)
+        signature = ImageFont.truetype("src/fonts/Daniels Signature DEMO.ttf", size=12)
 
-        draw.text((105, 27), self.surname, font=font, fill=(0, 0, 0))
-        draw.text((105, 37), self.forename, font=font, fill=(0, 0, 0))
+        draw.text((105, 27), self.forename, font=font, fill=(0, 0, 0))
+        draw.text((105, 37), self.surname, font=font, fill=(0, 0, 0))
         # draw.text((177, 150), self.gender, font=font, fill=(0, 0, 0))
         # draw.text((235, 150), self.nationality, font=font, fill=(0, 0, 0))
         draw.text((105, 58), self.date_of_birth, font=font, fill=(0, 0, 0))
@@ -44,10 +45,17 @@ class DrivingLicense:
         draw.text((105, 68), self.issue, font=font, fill=(0, 0, 0))
         draw.text((130, 88), self.dvla_number, font=font, fill=(0, 0, 0))
         draw.text((103, 126), self.address, font=font, fill=(0, 0, 0))
+        draw.text((115, 107), self.name, font=signature, fill=(0, 0, 0))
         # draw.rectangle([x1, y1, x2, y2], fill="white")
-
 
         output_image_path = "src/national_identity_card/generated_national_identity_card.jpg"
         image.save(output_image_path)
         image.show(f"{self.surname}, {self.forename}")
 
+
+def main():
+    dl = DrivingLicense
+
+
+if __name__ == "__main__":
+    main()

@@ -30,6 +30,7 @@ class NationalIdentityCard:
 
         font = ImageFont.truetype("src/fonts/Roboto-black.ttf", size=15)
         font2 = ImageFont.truetype("src/fonts/Roboto-black.ttf", size=13)
+        signature = ImageFont.truetype("src/fonts/Daniels Signature DEMO.ttf", size=18)
 
         draw.text((84, 62), self.surname, font=font, fill=(0, 0, 0))
         draw.text((84, 82), self.forename, font=font, fill=(0, 0, 0))
@@ -40,6 +41,7 @@ class NationalIdentityCard:
         draw.text((203, 249), self.expiry, font=font, fill=(0, 0, 0))
         draw.text((203, 216), self.issue, font=font, fill=(0, 0, 0))
         draw.text((386, 15), self.issue_number, font=font, fill=(0, 0, 0))
+        draw.text((310, 230), f"{self.forename[0]} {self.surname}", font=signature, fill=(0, 0, 0))
         # draw.rectangle([x1, y1, x2, y2], fill="white")
 
         output_image_path = "src/national_identity_card/generated_national_identity_card.jpg"
