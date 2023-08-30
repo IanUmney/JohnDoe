@@ -1,11 +1,11 @@
+from src import national_identity_card as nic
+from datetime import datetime
+import driving_license
+from src import nino
+import argparse
 import random
 import string
-from datetime import datetime
-import argparse
 import json
-from src import nino
-from src import national_identity_card as nic
-import driving_license
 import bank
 import re
 
@@ -15,11 +15,14 @@ class JohnDoe:
     def __init__(self, **kwargs):
         """Initialize a JohnDoe object with optional parameters.
 
+        Returns:
+            None: User must either specify --print or call the JohnDoe.print() method to print information to CLI.
+
         Parameters:
-        - gender (str): Gender of the individual ('m' or 'f').
-        - name (str): Full name of the individual.
-        - dob (str): Date of birth in DD/MM/YYYY format
-        - docs (bool): Whether to generate identity documents (default is False).
+        - gender (str): Gender of the individual ('m' or 'f'). If no gender given, random will be chosen.
+        - name (str): Name of the individual. Can be first, first and last, or None.
+        - dob (str): Date of birth in DD/MM/YYYY format.
+        - docs (bool): Whether to generate identity documents.
          """
 
         self.gender = self.gender(kwargs.get("gender"))  # Must be first as self.name relies on gender (m\f)
@@ -101,27 +104,39 @@ class JohnDoe:
     def name(self, name) -> str:
         """Assigns JD's name by parsing input or randomly generating one.
 
+        If no name is given, a random first name is chosen based on JD's gender and a random surname is chose.
+        If only one name is given it is treated as a forename and a random surname is generated.
+        If both names are given, they are used as the full name.
+
         Parameters:
-            name: Can be first name only, or first and last name.
+            name: In the format of 'FIRST LAST'.
 
         Returns:
-            String: First and last name.
+            String: 'FirstName LastName'.
+
+        Examples:
+            >>> JohnDoe(name="John Doe")
         """
 
         def random_firstname():
+            """Choose random firstname based on JD's gender.
+            The names are stored in f.txt or m.txt. They are a list of popular UK male/female names.
+            """
             with open(f"./src/names/{self.gender}.txt") as forename_file:
                 _line = forename_file.readlines()
                 _random_firstname = random.choice(_line).strip()
                 return _random_firstname
 
         def random_surname():
+            """Choose random surname from surnames.txt.
+            The file is a list of popular UK surnames.
+            """
             with open(f"./src/names/surnames.txt") as surname_file:
                 _line = surname_file.readlines()
                 _random_surname = random.choice(_line).strip()
                 return _random_surname
 
         if name is not None:
-
             if len(name.split()) == 1:
                 generated_surname = random_surname()
                 return f"{name.capitalize()} {generated_surname}"
@@ -146,13 +161,18 @@ class JohnDoe:
         Parameters:
             dob: Date of birth in the format DD/MM/YYYY.
 
+        Raises:
+            ValueError: If the calculated age from input dob is less than 18.
+
         Returns:
             String: Date of birth in the format DD/MM/YYYY.
+
+        Example:
+            >>> JohnDoe(dob="31/12/1999")
         """
 
         def valid_dob(input_dob):
             """Checks id the input dob is in the valid format"""
-
             pattern = re.compile(r'^\d{2}/\d{2}/\d{4}$')
 
             if pattern.match(input_dob):
@@ -163,7 +183,6 @@ class JohnDoe:
 
         def calculate_age(birthdate):
             """Calculates age from birthdate to determine under-age generation"""
-
             today = datetime.today()
             birthdate = datetime.strptime(birthdate, '%d/%m/%Y')
             age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
@@ -171,7 +190,6 @@ class JohnDoe:
 
         def generate_dob():
             """Generate a random date of birth"""
-
             random_day = random.randint(1, 27)
             random_month = random.randint(1, 11)
             random_year = random.randint(datetime.now().year - 88, datetime.now().year - 18)
@@ -183,25 +201,30 @@ class JohnDoe:
 
         elif valid_dob(dob):
             if calculate_age(dob) <= 18:
-                raise ValueError(f"You cannot generate minors! Odep.")
+                raise ValueError(f"You cannot generate minors! Odep.")  # todo add this to calculate_age()
             else:
                 return dob
         else:
             exit("The date of birth should be in the format of 'DD/MM/YYY'")
 
     def json(self) -> json:
-        """Print the JohnDoe object information"""
+        """Get the JohnDoe object information to CLI.
 
+        Returns:
+            Json: Takes JD's __dict__ and converts to Json with indent for readability.
+        """
         return json.dumps(self.__dict__, indent=4)
 
     @staticmethod
     def mobile_number() -> dict:
         """Assigns JD's mobile phone information based on accurate data.
 
+        The phone number "07" and then 9 randomly generated numbers.
+        The provider is a random choice of UK providers.
+
         Returns:
             Dictionary: Randomly generated phone number and random provider from list.
         """
-
         with open(f"./src/mobile_numbers.txt", "r") as file:
             # Get random line from number file
             random_line = random.choice(file.readlines())
@@ -235,15 +258,15 @@ class JohnDoe:
 
     @staticmethod
     def address() -> dict:
-        """Assign JD's address.
+        """Assign JD's address by random choice and generation.
+
+        House number:   Random integer 1 - 500.
+        Street:         Random choice of popular UK street names.
+        Area:           Random choice of any UK area.
+        Postcode:       Based on area.
 
         Returns:
-            Dictionary:
-                House number:   Random integer 1 - 500.
-                Street:         Random choice of popular UK street names.
-                Area:           Random choice of any UK area.
-                Postcode:       Based on area.
-
+            Dictionary: Containing address information.
         """
 
         # Get random house number
@@ -273,19 +296,19 @@ class JohnDoe:
     def banking_info() -> dict:
         """Generate JD's banking information.
 
-        Returns:
-            Dictionary:
-                Bank:           Based on sortcode
-                Sortcode:       Random from list of UK banks
-                Account Number: Randomly generated
-                Card number:    Randomly generated
-                Provider:       Based on card number
-                Expiry date:    Randomly generated
-                CVV:            Randomly Generated
-        """
+        Sortcode:       Random from list of UK banks
+        Bank:           Based on sortcode
+        Account Number: Randomly generated
+        Card number:    Accurate initial Randomly generated
+        Provider:       Based on card number's first 6 digits
+        Expiry date:    Randomly generated
+        CVV:            Randomly Generated
 
+        Returns:
+            Dictionary: Containing banking information.
+        """
         def account_details() -> dict:
-            """Gets the accurate information from file"""
+            """Gets a random line from file to use for generation."""
 
             with open("src/bank/sortcodes.txt", "r") as f:
                 lines = f.readlines()
@@ -334,8 +357,10 @@ class JohnDoe:
     def driving_license(self) -> str:
         """Generates JD's driving license number in accurate format.
 
+        Uses JD's gender, name, date of birth, and randomly generated characters.
+
         Returns:
-            String: Uses JD's gender, name, date of birth, and randomly generated characters.
+            String: JD's driving license number in correct format.
         """
 
         # The first five characters of the surname
@@ -391,8 +416,10 @@ class JohnDoe:
     def email(self) -> str:
         """Generates JD's email address.
 
+        Uses JD's first and last name with a random email provider
+
         Returns:
-            String: Uses JD's first and last name with a random email provider
+            String: john.doe@[random provider)
         """
 
         # Email providers with UK TLD
@@ -410,10 +437,10 @@ class JohnDoe:
     def ip_address() -> str:
         """Generate JD's IP address from UK IP blocks.
 
-        A random line is chosen and the minimum and maximum IP address block is used to generate the IP.
+        A random line is chosen and a minimum and maximum IP address block is used to generate the IP.
 
         Returns:
-            String: Randomly generated IP based on provider IP block.
+            String: 123.123.123.123
         """
 
         # Get random line from IP csv file
@@ -477,10 +504,10 @@ class JohnDoe:
         bank_card.generate()
 
     def print(self) -> None:
-        """Prints JD's information to the console
+        """Prints JD's information to the console.
 
         Returns:
-            None: Prints self.__dict__ as json via self.json()
+            None: Prints self.__dict__ as json.
         """
         print(self.json())
 
